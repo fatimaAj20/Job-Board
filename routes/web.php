@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AddItem;
+use App\Http\Controllers\adminController;
+use App\Models\test2;
+use App\Http\Controllers\employerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/admin', [adminController::class, "index" ]);
+Route::post('/reject/{id}', [adminController::class, "rejectRequest" ])->name('reject');
+Route::post('/approve/{id}', [adminController::class, "approveRequest" ])->name('approve');
+Route::get('/admin/employers/{id}', [employerController::class, "index" ]);
+
+

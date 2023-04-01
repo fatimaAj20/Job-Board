@@ -828,6 +828,28 @@
 
 <body class="antialiased">
     <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        <a href='/admin?filter=0'>rejected</a>
+        <a href='/admin?filter=1'>pending</a>
+        <a href='/admin?filter=2'>approved</a>
+    
+        @foreach($requests as $request)
+        <a href="/admin/employers/{{$request->employerId}}">{{$names[$request->employerId]}}</a>
+
+        @if($request->status==1)
+        <br>
+        <form method="post" action="{{route('reject',$request->id)}}">
+            {{csrf_field()}}
+            <input type="submit" name="reject" value="reject">
+        </form>
+
+        <form method="post" action="{{route('approve', $request->id)}}">
+            {{csrf_field()}}
+            <input type="submit" name="approve" value="approve">
+        </form>
+
+        @endif
+        @endforeach
+
     </div>
 </body>
 
