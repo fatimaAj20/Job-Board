@@ -20,9 +20,10 @@ use App\Http\Controllers\employerController;
 Route::middleware(["guest", "throttle:20,1"])-> group(function(){
     Route::get('/', [loginController::class, 'index'])->name("login") ;
     Route::post('/', [loginController::class, 'authenticate'])->name("authentication") ;
-    Route::get('/regester', [RegesterController::class, 'index'])->name("regester") ;
-    Route::get('/password.forgot', [RegesterController::class, 'forgot'])->name("forgot") ;
-    Route:: post('/regester', [RegesterController::class, 'create'])->name("regesterUser"); //use this in post action
+    Route::get('/regester/seeker', [RegesterController::class, 'seeker'])->name("Sregester") ;
+    Route::get('/regester/employer', [RegesterController::class, 'employer'])->name("Eregester") ;
+    Route:: post('/regester/seeker', [RegesterController::class, 'createSeeker'])->name("regesterSeeker");
+    Route:: post('/regester/employer', [RegesterController::class, 'createCompany'])->name("regesterCompany");  //use this in post action
 
 
     });
@@ -34,6 +35,6 @@ Route::middleware(["guest", "throttle:20,1"])-> group(function(){
     Route::get('/admin/employers/{id}', [employerController::class, "index" ]);
 
 
-}
-);
+
 Route:: get('/seeker.index', [SeekerController::class, 'index'])->name("seekerhome");
+

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
 </head>
 <body>
 	<h1>Register Page</h1>
-	<form action="{{ route('regesterUser') }}" method="POST">
+	<form action="{{ route('Eregester') }}" method="POST">
 		@csrf
 		<label for="first_name">First Name:</label>
 		<input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
