@@ -22,3 +22,4 @@ Route::middleware(["guest", "throttle:20,1"])-> group(function(){
 
 }
 );
+Route:: get('/seeker.index', [SeekerController::class, 'index'])->name("seekerhome");
