@@ -63,43 +63,47 @@
 	</style>
 </head>
 <body>
-	<h1>Register Page</h1>
-	<form action="{{ route('regesterUser') }}" method="POST">
-		@csrf
-		<label for="first_name">First Name:</label>
-		<input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
-		<label for="last_name">Last Name:</label>
-		<input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email" value="{{ old('email') }}" required>
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required>
-		<label for="password_confirmation">Confirm Password:</label>
-		<input type="password" id="password_confirmation" name="password_confirmation" required>
+	<div class="container">
 
+		<h1>Register Page</h1>
+		<form action="{{ route('regesterUser') }}" method="POST">
+			@csrf
+			<label for="first_name">First Name:</label>
+			<input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
+			<label for="last_name">Last Name:</label>
+			<input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" value="{{ old('email') }}" required>
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password" required>
+			<label for="password_confirmation">Confirm Password:</label>
+			<input type="password" id="password_confirmation" name="password_confirmation" required>
+	
+	
+			<div>
+				<label for="role">{{ __('Register as') }}</label>
+	
+				<div>
+					<select id="role" name="role">
+						<option value="3">{{ __('Job Seeker') }}</option>
+						<option value="2">{{ __('Company') }}</option>
+					</select>
+				</div>
+			</div>
+			<br>
+			<input type="submit" value="Register">
+		<div>
+		</form>
+		@if ($errors->any())
+			<div class="error">
+				<ul>
+					@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
+	</div>
 
-        <div>
-            <label for="role">{{ __('Register as') }}</label>
-
-            <div>
-                <select id="role" name="role">
-                    <option value="3">{{ __('Job Seeker') }}</option>
-                    <option value="2">{{ __('Company') }}</option>
-                </select>
-            </div>
-        </div>
-        <br>
-        <input type="submit" value="Register">
-    <div>
-	</form>
-	@if ($errors->any())
-		<div class="error">
-			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
 </body>
 </html>

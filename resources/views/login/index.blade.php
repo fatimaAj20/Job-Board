@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 	<title>Login Page</title>
 	<style>
 		body {
