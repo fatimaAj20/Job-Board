@@ -24,16 +24,13 @@ class RegesterController extends Controller
             'email'=> ['required','email'],
             'password'=> [ 'required', 'confirmed'],
             'role'=> ['required'],
-
         ]
-
         );
-
 
         $info =[
             'name'=> $Request->input('first_name')." ". $Request->input('last_name'),
             'email'=> $Request->input('email'),
-            'password'=>$Request->input('password'),
+            'password'=>bcrypt($Request->input('password')),
             'role'=>$Request->input('role')
         ];
 
@@ -42,9 +39,5 @@ class RegesterController extends Controller
         {
             return redirect(route('login' ));
         }
-
-
-
-
     }
 }

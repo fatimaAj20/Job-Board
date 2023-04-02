@@ -111,21 +111,7 @@
 	</style>
 </head>
 <body>
-	<!-- Navigation bar -->
-	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-		<!-- Brand -->
-		<a class="navbar-brand" href="#">Job Board</a>
-
-		<!-- Links -->
-		<ul class="navbar-nav">
-			<li class="nav-item">
-				<a class="nav-link" href="#">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Profile</a>
-			</li>
-		</ul>
-	</nav>
+	@include("navbars.navBar")
 
 	<!-- Search area -->
 	<div class="container mt-3">

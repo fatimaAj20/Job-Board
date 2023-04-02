@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    @include("navBarAdmin")
+    @include("navbars.navBar")
     <div class="container">
         <p>{{$user->name}}</p>
     </div>

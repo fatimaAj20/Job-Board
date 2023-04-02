@@ -12,15 +12,15 @@
 </head>
 
 <body>
-    <nav class="sidebar-navigation">
-        <h1>Job Board</h1>
-        <ul>
-            <li>
-                <i class="fa fa-sign-out"></i>
-                <span class="tooltip">Logout</span>
-            </li>
-        </ul>
-    </nav>
+    @if (Auth::user()->role == 2)
+    
+    @include('navbars.navBarEmployer')
+        {{-- @include('navbars.navBarAdmin') --}}
+    @elseif(Auth::user()->role == 1)
+        @include('navbars.navBarSeeker')
+    @else
+        @include('navbars.navBarEmployer')
+    @endif
 </body>
 
 </html>

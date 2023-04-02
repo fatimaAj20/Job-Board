@@ -12,8 +12,7 @@
 </head>
 
 <body class="antialiased">
-    @include('navBarAdmin')
-
+    @include('navbars.navBar')
     <div class="container">
         <div class="center" style="margin-bottom: 20px">
             <a class="button rejected" href='/admin?filter=0'>Rejected</a>
@@ -23,7 +22,7 @@
         <table>
             <thead>
                 <tr>
-                    <th colspan="3">Job Requests</th>
+                    <th colspan="3">Employers Registration Requests</th>
                 </tr>
             </thead>
             <tbody>
