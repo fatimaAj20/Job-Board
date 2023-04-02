@@ -13,6 +13,7 @@
 
 <body>
     <nav class="sidebar-navigation">
+        <h1>Job Board</h1>
         <ul>
             <li>
                 <i class="fa fa-sign-out"></i>

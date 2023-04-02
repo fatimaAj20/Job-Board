@@ -13,6 +13,7 @@
 
 <body class="antialiased">
     @include('navBarAdmin')
+
     <div class="container">
         <div class="center" style="margin-bottom: 20px">
             <a class="button rejected" href='/admin?filter=0'>Rejected</a>
@@ -52,6 +53,8 @@
             </tbody>
         </table>
     </div>
+
 </body>
+
 
 </html>

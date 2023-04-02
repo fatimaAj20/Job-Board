@@ -3,35 +3,49 @@
     padding: 0;
     list-style: none;
     font-family: sans-serif;
-	font-weight: 100;
+    font-weight: 100;
     line-height: 1;
+}
+html{
+    height: 100%;
 }
 
 body {
     background: linear-gradient(45deg, #c0f3f1, #e5cbf6);
-    overflow: hidden;
 }
+
 .sidebar-navigation {
     display: inline-block;
     min-height: 100vh;
-    width: 80px;
+    width:100px;
     background-color: #313443;
     float: left;
 }
+
 .sidebar-navigation ul {
     text-align: center;
     color: white;
 }
+
+.sidebar-navigation h1{
+    text-align: center;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
 .sidebar-navigation ul li {
     padding: 28px 0;
     cursor: pointer;
     transition: all ease-out 120ms;
 }
+
 .sidebar-navigation ul li i {
     display: block;
     font-size: 24px;
     transition: all ease 450ms;
 }
+
 .sidebar-navigation ul li .tooltip {
     display: inline-block;
     position: absolute;
@@ -39,12 +53,13 @@ body {
     padding: 8px 15px;
     border-radius: 3px;
     margin-top: -26px;
-    left: 90px;
+    left: 110px;
     opacity: 0;
     visibility: hidden;
     font-size: 13px;
     letter-spacing: 0.5px;
 }
+
 .sidebar-navigation ul li .tooltip:before {
     content: "";
     display: block;
@@ -56,59 +71,68 @@ body {
     height: 10px;
     background-color: inherit;
 }
+
 .sidebar-navigation ul li:hover {
     background-color: #22252e;
 }
+
 .sidebar-navigation ul li:hover .tooltip {
     visibility: visible;
     opacity: 1;
 }
+
 .sidebar-navigation ul li.active {
     background-color: #22252e;
 }
+
 .sidebar-navigation ul li.active i {
     color: #98d7ec;
 }
 
 .container {
-    overflow: auto;
-    min-height: 200px;
     position: absolute;
-    top: 10%;
+    top: 20%;
     left: 50%;
-    transform: translate(-50%, -10%);
+    transform: translate(-50%, -20%);
 }
+
 table {
     width: 800px;
     border-collapse: collapse;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
-th, td {
+
+th,
+td {
     padding: 15px;
     background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
 }
+
 th {
     text-align: center;
 }
+
 thead th {
     background-color: #55608f;
 }
+
 tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.3);
 }
+
 tbody td {
     position: relative;
 }
 
-tr{
-    border:#c09eff solid 1px
+tr {
+    border: #c09eff solid 1px
 }
 
 a {
     font-family: sans-serif;
-	font-weight: 100;
+    font-weight: 100;
     text-decoration: none;
 }
 
@@ -125,7 +149,7 @@ tbody td:hover:before {
 
 .center {
     text-align: center;
-  }
+}
 
 .button {
     display: inline-block;
@@ -138,16 +162,114 @@ tbody td:hover:before {
     margin-right: 10px;
     font-family: Arial, sans-serif;
     color: white;
-  }
+}
 
-  .approved {
+.approved {
     background-color: #50C878;
-  }
+}
 
-  .rejected {
+.rejected {
     background-color: #FF5555;
-  }
+}
 
-  .pending {
+.pending {
     background-color: #FFA07A;
-  }
+}
+
+.login-box {
+    position: absolute;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #2dc8c3, #b74bff);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(161, 19, 197, 0.6);
+    border-radius: 10px;
+}
+
+.login-box h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input, select {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.login-box select option{
+    background-color: #b74bff;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.login-box .user-box input:focus~label,
+.login-box .user-box input:valid ~label {
+    top: -20px;
+    left: 0;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.login-box input[type="submit"] {
+    background-color: #ba5ec8;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.login-box input[type="submit"]:hover {
+    background-color: #8b45a0;
+}
+
+.login-box a, p{
+    margin-top: 10px;
+    color: #ffffff;;
+    font-weight: bold;
+}
+
+.login-box a{
+    text-decoration: underline;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
