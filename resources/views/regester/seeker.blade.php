@@ -8,9 +8,8 @@
 
 <body>
     <div class="login-box">
-
         <h2>Register Page</h2>
-        <form action="{{ route('regesterUser') }}" method="POST">
+        <form action="{{ route('Sregester') }}" method="POST">
             @csrf
             <div class="user-box">
                 <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
@@ -21,6 +20,10 @@
                 <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
                 <label for="last_name">Last Name</label>
 
+            </div>
+            <div class="user-box">
+                <input type="number" id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber') }}" required>
+                <label for="phoneNumber">Phone Number:</label>
             </div>
             <div class="user-box">
                 <input type="email" id="email" name="email" value="{{ old('email') }}" required>

@@ -12,11 +12,9 @@
 </head>
 
 <body>
-    @if (Auth::user()->role == 2)
-    
-    @include('navbars.navBarEmployer')
-        {{-- @include('navbars.navBarAdmin') --}}
-    @elseif(Auth::user()->role == 1)
+    @if (Auth::user()->role == 1)
+        @include('navbars.navBarAdmin')
+    @elseif(Auth::user()->role == 0)
         @include('navbars.navBarSeeker')
     @else
         @include('navbars.navBarEmployer')
