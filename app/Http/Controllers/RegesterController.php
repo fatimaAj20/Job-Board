@@ -22,6 +22,7 @@ class RegesterController extends Controller
             'first_name'=> ["required"],
             'last_name'=> [ 'required'],
             'email'=> ['required','email'],
+            'phoneNumber'=>['required','numeric'],
             'password'=> [ 'required', 'confirmed'],
             'role'=> ['required'],
 
@@ -33,6 +34,7 @@ class RegesterController extends Controller
         $info =[
             'name'=> $Request->input('first_name')." ". $Request->input('last_name'),
             'email'=> $Request->input('email'),
+            'phoneNumber'=> $Request->input('phoneNumber'),
             'password'=>$Request->input('password'),
             'role'=>$Request->input('role')
         ];

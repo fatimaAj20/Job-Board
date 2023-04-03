@@ -13,4 +13,7 @@ class employerController extends Controller
         $user=User::find($emp->userId);
         return view("employerDetails",["employer"=>$emp ,"user"=>$user]);
     }
+    function index2(){
+        return view("Employer");
+    }
 }

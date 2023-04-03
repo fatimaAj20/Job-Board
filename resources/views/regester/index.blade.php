@@ -32,6 +32,7 @@
 
 		input[type="text"],
 		input[type="email"],
+		input[type="number"],
 		input[type="password"] {
 			width: 100%;
 			padding: 10px;
@@ -72,6 +73,8 @@
 		<input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
 		<label for="email">Email:</label>
 		<input type="email" id="email" name="email" value="{{ old('email') }}" required>
+		<label for="phoneNumber">Phone Number:</label>
+		<input type="number" id="phoneNumber" name="phoneNumber" value="{{ old('phoneNumber') }}" required>
 		<label for="password">Password:</label>
 		<input type="password" id="password" name="password" required>
 		<label for="password_confirmation">Confirm Password:</label>
