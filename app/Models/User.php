@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     const ADMIN_ROLE = 1;
     const EMPLOYER_ROLE = 2;
-    const SEEKER_ROLE = 0;
+    const SEEKER_ROLE = 3;
 
     use HasApiTokens, HasFactory, Notifiable;
 

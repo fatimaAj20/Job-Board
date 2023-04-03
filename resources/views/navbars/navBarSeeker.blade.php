@@ -14,7 +14,6 @@
 <body>
     <nav class="sidebar-navigation">
         <h1>Job Board</h1>
-        <h3>{{Auth::user()->name}}</h3>
         <ul>
             <li>
                 <a href="/seeker.index"><i class="fa fa-home"></i> </a>

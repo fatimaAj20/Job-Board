@@ -18,7 +18,7 @@ class RegesterController extends Controller
         return view("regester.employer");
     }
 
-    public function createSeeker(Request $Request, $role)
+    public function createSeeker(Request $Request)
     {
         //this function is for creating the account for seeker
         //fill user table then fill the seeker table
@@ -48,7 +48,7 @@ class RegesterController extends Controller
     }
 
 
-    public function createCompany(Request $Request, $role)
+    public function createCompany(Request $Request)
     {
         //this function is for the regestration of the employers/companies
         // we have to first insert them as users

@@ -14,7 +14,7 @@
 <body>
     @if (Auth::user()->role == 1)
         @include('navbars.navBarAdmin')
-    @elseif(Auth::user()->role == 0)
+    @elseif(Auth::user()->role == 3)
         @include('navbars.navBarSeeker')
     @else
         @include('navbars.navBarEmployer')

@@ -29,7 +29,6 @@
                 </ul>
             </div>
         @endif
-        <p>Don't have an account? <a href={{ route('regester') }}> Create one</a></p>
     </div>
 </body>
 </html>

@@ -33,7 +33,7 @@ Route::middleware(["auth"])->group(function () {
     Route::post('/approve/{id}', [adminController::class, "approveRequest"])->name('approve');
     Route::get('/admin/employers/{id}', [employerController::class, "index"]);
     Route::get('/seeker.index', [SeekerController::class, 'index'])->name("seekerhome");
-    Route::get('/Employer', [employerController::class, "index2"]);
+    Route::get('/employer', [employerController::class, "index2"]);
     Route::get('/jobPosts', [JobController::class, "index"]);
     // Route::get('/jobRequests',[JobController::class,""]);
     Route::get('/addJob', [JobController::class, "index2"]);

@@ -14,14 +14,13 @@
 <body>
     <nav class="sidebar-navigation">
         <h1>Job Board</h1>
-        <h3>{{Auth::user()->name}}</h3>
         <ul>
             <li>
                 <a href="/employer"><i class="fa fa-home"></i> </a>
                 <span class="tooltip">Home</span>
             </li>
             <li>
-                <a href=""><i class="fa fa-briefcase"></i> </a>
+                <a href="/jobPosts"><i class="fa fa-briefcase"></i> </a>
                 <span class="tooltip">Job Posts</span>
             </li>
             <li>

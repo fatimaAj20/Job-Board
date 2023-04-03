@@ -96,6 +96,11 @@ body {
     transform: translate(-50%, -10%);
 }
 
+.container a{
+    color: #22252e;
+
+}
+
 table {
     width: 800px;
     border-collapse: collapse;
@@ -201,7 +206,7 @@ tbody td:hover:before {
     position: relative;
 }
 
-.login-box .user-box input, select {
+.login-box .user-box input, select, textarea {
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -215,6 +220,10 @@ tbody td:hover:before {
 
 .login-box select option{
     background-color: #b74bff;
+}
+
+.login-box textarea::placeholder{
+    color: white;
 }
 
 .login-box .user-box label {
