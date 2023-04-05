@@ -283,3 +283,21 @@ tbody td:hover:before {
     margin-bottom: 10px;
     font-weight: bold;
 }
+
+.job-post {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .job-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .job-location {
+    font-size: 14px;
+    color: #666;
+  }

@@ -28,7 +28,11 @@
                 <span class="tooltip">Logout</span>
             </li>
         </ul>
+
+
     </nav>
+    @yield('content')
+
 </body>
 
 </html>
