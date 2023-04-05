@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table-> integer('role')->default(User::ADMIN_ROLE);
-            $table->string('phoneNumber');
+            $table-> integer('role')->default(1);
+            $table->string('phoneNumber')->default('');
             $table->rememberToken();
             $table->timestamps();
         });

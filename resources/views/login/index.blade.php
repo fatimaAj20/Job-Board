@@ -6,29 +6,26 @@
     <title>Login Page</title>
 </head>
 <body>
-    <div class="login-box">
-        <h2>Login</h2>
-        <form action="{{ route('authentication') }}" method="POST">
-            @csrf
-            <div class="user-box">
-                <input type="email" id="email" name="email" required value=''>
-                <label>Email</label>
-            </div>
-            <div class="user-box">
-                <input type="password" id="password" name="password" required value=''>
-                <label>Password</label>
-            </div>
-            <input type="submit" value="Login">
-        </form>
-        @if ($errors->any())
-            <div class="error">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li class="error">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-    </div>
+	<h1>Login Page</h1>
+	<form action="{{ route('authentication') }}" method="POST">
+		@csrf
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required value=''>
+		<label for="password">Password:</label>
+		<input type="password" id="password" name="password" required value=''>
+		<input type="submit" value="Login">
+	</form>
+    @if ($errors->any())
+		<div class="error">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
+	<p>Don't have an account?<br>
+        Regester as SEEKER <a href= {{ route('Sregester') }} > Create one</a><br>
+        Regester as COMPANY <a href= {{ route('Eregester') }} > Create one</a></p>
 </body>
 </html>

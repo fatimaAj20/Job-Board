@@ -6,6 +6,7 @@ use App\Http\Controllers\employerController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegesterController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\SeekerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +30,16 @@ Route::middleware(["guest", "throttle:20,1"])->group(function () {
 Route::middleware(["auth"])->group(function () {
     Route::get('/admin', [adminController::class, "index"]);
     Route::get('/logout', [loginController::class, "logout"]);
+
     Route::post('/reject/{id}', [adminController::class, "rejectRequest"])->name('reject');
     Route::post('/approve/{id}', [adminController::class, "approveRequest"])->name('approve');
     Route::get('/admin/employers/{id}', [employerController::class, "index"]);
+
+    //the following routes will be used to nevigate the pages of the seeker
     Route::get('/seeker.index', [SeekerController::class, 'index'])->name("seekerhome");
+    Route::get('/seeker.profile', [SeekerController::class, 'profile'])->name("seekerprofile");
+
+
     Route::get('/employer', [employerController::class, "index2"]);
     Route::get('/jobPosts', [JobController::class, "index"]);
     // Route::get('/jobRequests',[JobController::class,""]);
