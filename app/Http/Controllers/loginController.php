@@ -29,7 +29,7 @@ class loginController extends Controller
                 return redirect ("/admin");
             }
             elseif(Auth::user()->role == User::SEEKER_ROLE){
-                return redirect("/seeker.index");
+                return redirect("/seeker.home");
             }
             else{
                 return redirect("/employer");

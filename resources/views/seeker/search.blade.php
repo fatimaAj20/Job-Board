@@ -1,11 +1,13 @@
 @extends('navbars.navBarSeeker')
 
+
 <form method='post' action="{{ route('searchJobs') }}">
+    @csrf
   <label for="location">Location:</label>
   <input type="text" id="location" name="location"><br>
 
-  <label for="industry">Industry:</label>
-  <input type="text" id="industry" name="industry"><br>
+  <label for="category">Industry:</label>
+  <input type="text" id="category" name="category"><br>
 
   <label for="title ">Industry:</label>
   <input type="text" id="title" name="title"><br>

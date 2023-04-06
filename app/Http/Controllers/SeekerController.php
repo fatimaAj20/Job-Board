@@ -18,18 +18,24 @@ class SeekerController extends Controller
 
 public function search(Request $request)
 {
-    $location = $request->input('location');
-    $category = $request->input('category');
-    $title = $request->input('title');
+    $location = $request->input('location') ?? null;
+    $category = $request->input('category') ?? null;
+    $title = $request->input('title') ?? null;
 
-    $jobs = JobPost::where('location', 'LIKE', "%{$location}%")
-        ->orWhere('category', 'LIKE', "%{$category}%")
-        ->orWhere('title', 'LIKE', "%{$title}%")
+    $jobs = JobPost::when($location, function ($query, $location) {
+            return $query->where('location',$location);
+        })
+        ->when($category, function ($query, $category) {
+            return $query->where('category', $category);
+        })
+        ->when($title, function ($query, $title) {
+            return $query->where('title', $title);
+        })
         ->get();
 
     return view('seeker.search', ['jobs' => $jobs]);
-
 }
+
 //when viewing the profile
 public function profile()
 {
