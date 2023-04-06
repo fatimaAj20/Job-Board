@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\jobPost;
 use App\Models\seeker;
-
+use Illuminate\Support\Facades\Auth;
 
 class SeekerController extends Controller
 {
@@ -39,7 +39,8 @@ public function search(Request $request)
 //when viewing the profile
 public function profile()
 {
-    return view('seeker.profile');
+    $user=Auth::user();
+    return view('seeker.profile', ['user'=> $user]);
 }
 
 // when they press on the edit button

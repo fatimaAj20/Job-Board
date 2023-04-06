@@ -1,5 +1,5 @@
 @extends('navbars.navBarSeeker')
-
+@section('content')
 <form method='post' action="{{ route('searchJobs') }}">
     @csrf
   <label for="location">Location:</label>
@@ -8,12 +8,12 @@
   <label for="industry">category:</label>
   <input type="text" id="category" name="category"><br>
 
-  <label for="title ">Industry:</label>
+  <label for="title ">title:</label>
   <input type="text" id="title" name="title"><br>
 
   <input type="submit" value="Submit">
 
 
 </form>
-
+@endsection
 
