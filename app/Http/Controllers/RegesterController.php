@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\EmployerRegistrationRequest;
 use App\Models\User;
 use App\Models\employer;
+use App\Models\seeker;
 use Illuminate\Http\Request;
 
 class RegesterController extends Controller
@@ -44,6 +45,13 @@ class RegesterController extends Controller
         ];
 
         $user = User::create($info);
+        $seekerInfo=
+        [
+            'UserId'=> $user->id,
+
+
+        ];
+        $seeker=seeker::create($$seekerInfo);
 
         if ($user and $user->id > 0) {
             return redirect(route('login'));
@@ -84,7 +92,6 @@ class RegesterController extends Controller
 
 
         $user = User::create($info);
-
 
 
 
