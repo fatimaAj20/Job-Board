@@ -16,11 +16,11 @@
         <h1>Job Board</h1>
         <ul>
             <li>
-                <a href="/seeker.index"><i class="fa fa-home"></i> </a>
+                <a href="/seeker.home"><i class="fa fa-home"></i> </a>
                 <span class="tooltip">Home</span>
             </li>
             <li>
-                <a href=""><i class="fa fa-user"></i> </a>
+                <a href="/seeker.profile"><i class="fa fa-user"></i> </a>
                 <span class="tooltip">Profile Details</span>
             </li>
             <li>
@@ -28,7 +28,13 @@
                 <span class="tooltip">Logout</span>
             </li>
         </ul>
+
+
     </nav>
+
+
+    @yield('content')
+
 </body>
 
 </html>

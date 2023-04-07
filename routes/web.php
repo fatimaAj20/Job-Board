@@ -6,6 +6,7 @@ use App\Http\Controllers\employerController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegesterController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\SeekerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +30,23 @@ Route::middleware(["guest", "throttle:20,1"])->group(function () {
 Route::middleware(["auth"])->group(function () {
     Route::get('/admin', [adminController::class, "index"]);
     Route::get('/logout', [loginController::class, "logout"]);
+
     Route::post('/reject/{id}', [adminController::class, "rejectRequest"])->name('reject');
     Route::post('/approve/{id}', [adminController::class, "approveRequest"])->name('approve');
     Route::get('/admin/employers/{id}', [employerController::class, "index"]);
-    Route::get('/seeker.index', [SeekerController::class, 'index'])->name("seekerhome");
+
+    //the following routes will be used to nevigate the pages of the seeker
+    Route::get('/seeker.home', [SeekerController::class, 'home'])->name("seekerhome");
+    Route::post('/seeker.search',[SeekerController::class, 'search'] )->name('searchJobs');
+    Route::get('/seeker.profile/{id}', [SeekerController::class, 'profile'])->name("seekerprofile");
+    Route::get('/seeker.edit',[SeekerController::class, 'editView'])->name("seekeredit");
+    Route::post('/seeker.edit', [SeekerController::class, 'editSave'])->name("seekeredit");
+    Route::get('/seeker.profile', [SeekerController::class, 'profile'])->name("seekerprofile");
+    Route::get('/seeker.edit', [SeekerController::class, 'edit'])->name("profileEdit");
+
+
+
+
     Route::get('/employer', [employerController::class, "index2"]);
     Route::get('/jobPosts', [JobController::class, "index"]);
     // Route::get('/jobRequests',[JobController::class,""]);

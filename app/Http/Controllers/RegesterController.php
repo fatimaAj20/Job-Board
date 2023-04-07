@@ -18,8 +18,11 @@ class RegesterController extends Controller
         return view("regester.employer");
     }
 
-    public function createSeeker(Request $Request)
-    {
+
+
+    public function createSeeker(Request $Request){
+
+
         //this function is for creating the account for seeker
         //fill user table then fill the seeker table
         $Request->validate(
@@ -48,8 +51,7 @@ class RegesterController extends Controller
     }
 
 
-    public function createCompany(Request $Request)
-    {
+    public function createCompany(Request $Request){
         //this function is for the regestration of the employers/companies
         // we have to first insert them as users
         //manage their files
@@ -57,35 +59,53 @@ class RegesterController extends Controller
         //there activity should be set to pending
 
         $Request->validate([
-            'companyName' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed'],
+            'companyName'=> ['required' ],
+            'email'=> ['required','email'],
+            'password'=> [ 'required', 'confirmed'],
+            'phoneNumber'=> ['required'],
+            'certificate' => ['required'],
+
 
         ]);
-        $info = [
-            'name' => $Request->input('companyName'),
-            'email' => $Request->input('email'),
-            'password' => $Request->input('password'),
-            'role' => '2'
+        $info =[
+            'name'=> $Request->input('companyName'),
+            'email'=> $Request->input('email'),
+            'password' => Hash::make($Request->input('password')),
+
+            'role'=> '2'
         ];
+        if(isset($Request['phoneNumber']))
+        {
+            $info['phoneNumber']= $Request->input('phoneNumber');
+        }
+        else
+        $info['phoneNumber']='';
+
+
 
         $user = User::create($info);
 
-        if ($user and $user->id < 0 ) {
-            $file = $Request->file('certificate');
-            $fileName = $user->id . '.' . $file->getClientOriginalExtension();
-            $storagePath = storage_path('app/public/certificates'); // should name the folder certificate if not change the name
-            $file->move($storagePath, $fileName);
-            $path = '/storage/certificates/' . $fileName;
 
-            $companyInfo = [
+
+        if ($user and $user->id > 0 ) {
+            if ($Request->hasFile('certificate')) {
+                $file = $Request->file('certificate');
+
+
+                $fileName = $user->id . '.' . $file->getClientOriginalExtension();
+                $storagePath = storage_path('public/certificates'); // should name the folder certificate if not change the name
+
+                $file->move($storagePath, $fileName);
+                $path = '/storage/certificates/' . $fileName;
+                 $companyInfo = [
                 'userId' => $user->id,
-                'websiteLink' => $Request->inpute('website'),
+                'websiteLink' => $Request->input('website'),
                 'description' => $Request->input('description'),
                 'location' => $Request->input('location'),
-                'active' => 0, //asuming that 0 is pending or rejected
+                'active' => 1, //asuming that 1 is pending
                 'registrationNumber' => $Request->input('registrationNumber'),
                 "lebanonCreftificateOfIncorporation" => $path,
+                'logo'=>'',
             ];
 
             $company = employer::create($companyInfo);
@@ -98,5 +118,12 @@ class RegesterController extends Controller
             // EmployerRegistrationRequest::create($requestinfo );
             // return redirect(route('login'));
         }
+            } else {
+               view('welcome');
+
+            }
+
+
+
     }
 }

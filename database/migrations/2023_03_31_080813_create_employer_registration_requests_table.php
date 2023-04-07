@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign("userId")->references("id")->on("users");
             $table->string("websiteLink");
             $table->string("description");
-            $table->string("logo");
+            $table->string("logo")->nullable()->change();;
             $table->string("location");
             $table->integer("active");
             $table->string("lebanonCreftificateOfIncorporation");
