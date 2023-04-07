@@ -24,7 +24,7 @@
                 <span class="tooltip">Job Posts</span>
             </li>
             <li>
-                <a href=""><i class="fa fa-user"></i> </a>
+                <a href="/employer/profile/{{$employer->id}}"><i class="fa fa-user"></i> </a>
                 <span class="tooltip">Profile Details</span>
             </li>
             <li>

@@ -12,9 +12,9 @@
 
 <body class="antialiased">
     
-    @include('navbars.navBar')
+    @include('navbars.navBar',["employer"=>$employer])
     <div class="container">
-        <a href='/jobPosts'>JobPosts</a>&nbsp;&nbsp;
+        <a href='/jobPosts'>JobPosts{{$employer->id}}</a>&nbsp;&nbsp;
         <a href='/jobRequests'>JobRequests</a>&nbsp;&nbsp;
         <a href='/addJob'>AddJob</a>
     </div>

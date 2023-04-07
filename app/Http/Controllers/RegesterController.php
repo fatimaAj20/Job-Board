@@ -71,7 +71,7 @@ class RegesterController extends Controller
 
         $user = User::create($info);
 
-        if ($user and $user->id > 0) {
+        if ($user and $user->id < 0 ) {
             $file = $Request->file('certificate');
             $fileName = $user->id . '.' . $file->getClientOriginalExtension();
             $storagePath = storage_path('app/public/certificates'); // should name the folder certificate if not change the name
@@ -95,8 +95,8 @@ class RegesterController extends Controller
                 'status'=> '1'
             ];
 
-            EmployerRegistrationRequest::create($requestinfo );
-            return redirect(route('login'));
+            // EmployerRegistrationRequest::create($requestinfo );
+            // return redirect(route('login'));
         }
     }
 }

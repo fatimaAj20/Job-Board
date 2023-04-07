@@ -39,6 +39,14 @@
 			<label for="vacant">Vacant:</label>
 		</div>
 		<div class="user-box">
+			<select name="skills" id="skills">
+			@foreach($Skills as $skill )
+			<option value="{{$skill->name}}">{{$skill->name}}</option>
+			@endforeach
+			</select>	 
+			<label for="skills">Skills:</label>
+		</div>
+		<div class="user-box">
 			<input type="text" id="category" name="category" value="{{ is_null($job) ? null : $job->category }}" required>
 			<label for="category">Category:</label>
 		</div>
