@@ -132,8 +132,8 @@ class RegesterController extends Controller
                 'status'=> '1'
             ];
 
-            EmployerRegistrationRequest::create($requestinfo );
-            return redirect(route('login'));
+            // EmployerRegistrationRequest::create($requestinfo );
+            // return redirect(route('login'));
         }
             } else {
                view('welcome');

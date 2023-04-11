@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\employer;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class employerController extends Controller
 {
@@ -14,6 +15,30 @@ class employerController extends Controller
         return view("employerDetails",["employer"=>$emp ,"user"=>$user]);
     }
     function index2(){
-        return view("Employer");
+        $user=Auth::user();
+        $employer=employer::where("userId",$user->id)->get();
+        \Log::info($employer);
+        return view("Employer",["employer"=>$employer[0]]);
+    }
+    function ViewProfile($id){
+        $employer=employer::find($id);
+        $view=1;
+        return view("EmployerProfile",["employer"=>$employer ,"view"=>$view]);
+    }
+    function EditProfile($id){
+        $employer=employer::find($id);
+        $view=0;
+        return view("EmployerProfile",["employer"=>$employer ,"view"=>$view]);
+    }
+    function SaveProfile($id,Request $Request){
+        $employer=employer::find($id);
+        $employer->websiteLink=$Request->input('websiteLink');
+        $employer->description= $Request->input('description');
+        $employer->location=$Request->input('location');
+        $employer->logo=$Request->input('logo');
+        $employer->lebanonCreftificateOfIncorporation=$Request->input('lebanonCreftificateOfIncorporation');
+        $employer->registrationNumber=$Request->input('registrationNumber');
+        $employer->save();
+        return redirect("/employer/profile/".$employer->id);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\jobPost;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -31,13 +32,14 @@ class JobController extends Controller
             'salary'=>['required'],
             'applied'=> [ 'required'],
             'vacant'=> ['required'],
+            'skills'=> ['required'],
             'category'=> ['required']
 
         ]
 
         );
 
-
+        // $user=Auth::user();
         $info =[
             'employerId'=>1,
             'title'=> $Request->input('title'),

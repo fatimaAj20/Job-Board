@@ -49,10 +49,17 @@ Route::middleware(["auth"])->group(function () {
     Route::get('/employer', [employerController::class, "index2"]);
     Route::get('/jobPosts', [JobController::class, "index"]);
     // Route::get('/jobRequests',[JobController::class,""]);
+
     Route::get('/addJob', [JobController::class, "index2"]);
     Route::post('/addJob', [JobController::class, 'create'])->name("createJob");
     Route::get('/jobPosts/details/{id}', [JobController::class, "show"]);
     Route::get('/addJob/edit/{id}', [JobController::class, "index3"]);
     Route::get('/delete/{id}', [JobController::class, "delete"]);
     Route::post('/addJob/edit/{id}', [JobController::class, 'save'])->name("save");
+
+
+    Route::get('/employer/profile/{id}', [employerController::class, 'ViewProfile']);
+    Route::post('/employer/profile/edit/{id}', [employerController::class, 'EditProfile']);
+    Route::post('/employer/profile/{id}', [employerController::class, 'SaveProfile']);
+
 });

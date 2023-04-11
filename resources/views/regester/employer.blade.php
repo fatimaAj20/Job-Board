@@ -6,57 +6,77 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
-<body>
-	<h1>Register Page</h1>
+<body style="overflow: visible">
     <div class="login-box">
-	<form action="{{ route('Eregester') }}" method="POST" enctype="multipart/form-data">
-		@csrf
-		<label for="companyName">Company Name:</label>
-		<input type="text" id="companyName" name="companyName" value="{{ old('companyName') }}" required><br>
-		<label for="email">Email:</label>
-		<input type="email" id="email" name="email" value="{{ old('email') }}" required><br>
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="password" required><br>
-		<label for="password_confirmation">Confirm Password:</label>
-		<input type="password" id="password_confirmation" name="password_confirmation" required><br > <br>
-        Documents related to comapany authentication:
-        <br>
-        <div style="border: 1px solid black; padding:10px">
-        <label for="certificate">lebanon Creftificate Of Incorporation:</label>
-        <input type="file" id="certificate" name="certificate" required><br> <br>
-        <label for="registrationNumber">Registration Number:</label>
-        <input type="text" id="registrationNumber" name="registrationNumber" value="{{ old('registrationNumber') }}" required>
-        </div>
-        <br>
+        <h1>Registeration Page</h1>
+        <form action="{{ route('Eregester') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="user-box">
+                <input type="text" id="companyName" name="companyName" value="" required><br>
+                <label for="companyName">Company Name</label>
+            </div>
+            <div class="user-box">
+                <input type="email" id="email" name="email" value="{{ old('email') }}" required><br>
+                <label for="email">Email</label>
 
-        Extra Information:
-        <br>
-        <div style="border: 1px solid black; padding:10px">
-        <label for="website">website:</label>
-        <input type="text" id="website" name="website">
-        <label for="phoneNumber">phoneNumber:</label>
-        <input type="text" id="phoneNumber" name="phoneNumber" required>
-        <label for="location">location:</label>
-        <input type="text" id="location" name="location">
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" rows="4" cols="48"></textarea>
+            </div>
+            <div class="user-box">
+                <input type="password" id="password" name="password" required><br>
+                <label for="password">Password</label>
+            </div>
+            <div class="user-box">
+                <input type="password" id="password_confirmation" name="password_confirmation" required><br> <br>
+                <label for="password_confirmation">Confirm Password</label>
 
-        </div>
-        <br>
+            </div>
+    </div>
+    <div class="login-box" >
+        <h2>Authentication Documentation<h2>
+                <div class="user-box">
+                    <label for="certificate">Lebanon Certificate Of Incorporation</label>
+                    <br>
+                    <input type="file" id="certificate" name="certificate" required><br> <br>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="registrationNumber" name="registrationNumber"
+                        value="{{ old('registrationNumber') }}" required>
+                    <label for="registrationNumber">Registration Number</label>
 
-        <input type="submit" value="Register">
-         <div>
-	</form>
+                </div>
+
+    </div>
+    <div class="login-box">
+        <h2>Extra Information<h2>
+                <br>
+                <div class="user-box">
+                    <input type="text" id="website" name="website">
+                    <label for="website">Website</label>
+
+                </div>
+                <div class="user-box">
+                    <input type="text" id="phoneNumber" name="phoneNumber" required>
+                    <label for="phoneNumber">Phone Number</label>
+                </div>
+                <div class="user-box">
+                    <input type="text" id="location" name="location">
+                    <label for="location">Location</label>
+
+                </div>
+                <div class="user-box">
+                    <textarea id="description" placeholder="Description" name="description" rows="4" cols="48"></textarea>
+                </div>
+                <input type="submit" value="Register">
+                </form>
+    </div>
+    @if ($errors->any())
+        <div class="error">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
-	@if ($errors->any())
-		<div class="error">
-			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-	@endif
+    @endif
 </body>
 
 </html>

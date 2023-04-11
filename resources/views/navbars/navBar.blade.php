@@ -12,6 +12,8 @@
 </head>
 
 <body>
+    <div style="float:left">
+
     @if (Auth::user()->role == 1)
         @include('navbars.navBarAdmin')
     @elseif(Auth::user()->role == 3)
@@ -19,6 +21,7 @@
     @else
         @include('navbars.navBarEmployer')
     @endif
+    </div>
 </body>
 
 </html>
