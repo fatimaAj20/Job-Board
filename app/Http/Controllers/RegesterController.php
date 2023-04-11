@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\employer;
 use App\Models\seeker;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class RegesterController extends Controller
 {
@@ -45,15 +47,21 @@ class RegesterController extends Controller
         ];
 
         $user = User::create($info);
-        $seekerInfo=
-        [
-            'UserId'=> $user->id,
 
 
-        ];
-        $seeker=seeker::create($$seekerInfo);
+        if ($user and $user->id > 0){
 
-        if ($user and $user->id > 0) {
+            $seekerInfo=
+            [
+                'userId'=> $user->id,
+
+            ];
+            $seeker=seeker::create($seekerInfo);
+            return redirect(route('login'));
+
+        }
+        else
+        {
             return redirect(route('login'));
         }
     }
@@ -114,6 +122,7 @@ class RegesterController extends Controller
                 'registrationNumber' => $Request->input('registrationNumber'),
                 "lebanonCreftificateOfIncorporation" => $path,
                 'logo'=>'',
+
             ];
 
             $company = employer::create($companyInfo);

@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger("userId");
             $table->foreign("userId")->references("id")->on("users");
-            $table->string("websiteLink");
-            $table->string("description");
-            $table->string("logo")->nullable()->change();;
-            $table->string("location");
+            $table->string("websiteLink")->nullable();
+            $table->string("description")->nullable();
+            $table->string("logo")->nullable();
+            $table->string("location")->nullable();
             $table->integer("active");
             $table->string("lebanonCreftificateOfIncorporation");
             $table->string("registrationNumber");
