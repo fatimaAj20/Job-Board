@@ -6,7 +6,7 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body style="overflow: visible">
     <div class="login-box">
         <h1>Registeration Page</h1>
         <form action="{{ route('Eregester') }}" method="POST" enctype="multipart/form-data">
@@ -30,7 +30,7 @@
 
             </div>
     </div>
-    <div class="login-box">
+    <div class="login-box" >
         <h2>Authentication Documentation<h2>
                 <div class="user-box">
                     <label for="certificate">Lebanon Certificate Of Incorporation</label>
