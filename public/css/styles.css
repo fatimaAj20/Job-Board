@@ -395,3 +395,22 @@ tbody td:hover:before {
     background-color: #27ae60;
   }
 
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="file"] {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+
+  textarea {
+    height: 80px;
+  }
