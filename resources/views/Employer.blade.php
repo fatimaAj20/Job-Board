@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
     <title>Job Board</title>
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
 </head>
 
@@ -14,9 +13,24 @@
     
     @include('navbars.navBar',["employer"=>$employer])
     <div class="container">
-        <a href='/jobPosts'>JobPosts{{$employer->id}}</a>&nbsp;&nbsp;
-        <a href='/jobRequests'>JobRequests</a>&nbsp;&nbsp;
-        <a href='/addJob'>AddJob</a>
+        <h1> Welcome {{Auth::user()->name}}!</h1>
+
+        <div class="cards">
+            <div class="card">
+                <a href='/jobPosts'>Job Posts</a>
+                <img src="{{ asset('images/job_posting.webp') }}" alt="Card image">
+            </div>
+            <div class="card">
+                
+        <a href='/jobRequests'>Job Requests</a>
+        <img src="{{ asset('images/job_application.webp') }}" alt="Card image">
+            </div>
+            <div class="card">
+
+                <a href='/addJob'>Add Job</a>
+                <img src="{{ asset('images/job_create.jpg') }}" alt="Card image">
+            </div>
+          </div>
     </div>
 </body>
 

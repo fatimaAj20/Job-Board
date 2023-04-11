@@ -7,14 +7,13 @@
 </head>
 
 <body>
-    <div class="login-box">
+    <div class="login-box login-box-abs">
         <h2>Register Page</h2>
         <form action="{{ route('regesterSeeker') }}" method="POST">
             @csrf
             <div class="user-box">
                 <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" required>
                 <label for="first_name">First Name</label>
-
             </div>
             <div class="user-box">
                 <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" required>
