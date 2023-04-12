@@ -225,7 +225,7 @@ public function addSkill(Request $request) {
        ['user_id' => $user_id, 'skill_id' => $skill_id]
     );
 
-    // Redirect back to the edit profile page
+    // Redirect back to the edit skills  page
     return redirect('/seeker.editSkills')->with('success', 'Skill added successfully!');
  }
 

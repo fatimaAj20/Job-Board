@@ -28,7 +28,7 @@
         <tbody>
             @foreach ($jobs as $job)
                 <tr>
-                    <td>{{ $job->title }}</td>
+                    <td> {{ $job->title }}</td>
                     <td>{{ $job->location }}</td>
                 </tr>
             @endforeach
