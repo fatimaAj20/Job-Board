@@ -20,6 +20,10 @@
                 <span class="tooltip">Home</span>
             </li>
             <li>
+                <a href="/activity"><i class="fa fa-magnifying-glass"></i> </a>
+                <span class="tooltip">Search User Activity</span>
+            </li>
+            <li>
                 <a href="/logout"><i class="fa fa-sign-out"></i> </a>
                 <span class="tooltip">Logout</span>
             </li>

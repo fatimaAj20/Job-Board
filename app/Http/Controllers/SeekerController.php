@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\notifications;
 use Illuminate\Http\Request;
 use App\Models\jobPost;
 use App\Models\seeker;
@@ -61,6 +62,11 @@ public function editSave(Request $request)
 
 public function matchedSeeker($job){
     // return the list of seekers that match specific job
+}
+function SeekerNotifications(Request $request){
+    $notifications=notifications::where("userId",$request->userId)->get();
+    return view("notifications",["notifications"=>$notifications]);
+    
 }
 
 }

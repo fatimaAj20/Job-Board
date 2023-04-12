@@ -39,11 +39,11 @@
 			<label for="vacant">Vacant:</label>
 		</div>
 		<div class="user-box">
-			<select name="skills" id="skills">
-			@foreach($Skills as $skill )
-			<option value="{{$skill->name}}">{{$skill->name}}</option>
+			<select name="skills[]" id="skills" multiple>
+			@foreach($skills as $skill )
+			<option value="{{$skill->name}}" @if (!is_null($job)) @foreach($requiredSkills as $reqSkill) @if($reqSkill->skillId == $skill->id) selected="selected"  @endif @endforeach @endif>{{$skill->name}}</option>
 			@endforeach
-			</select>	 
+			</select> 
 			<label for="skills">Skills:</label>
 		</div>
 		<div class="user-box">

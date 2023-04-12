@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\employer;
+use App\Models\requiredSkills;
+use App\Models\skills;
+use Dotenv\Util\Str;
 use Illuminate\Http\Request;
 use App\Models\jobPost;
 use DB;
@@ -14,15 +18,21 @@ class JobController extends Controller
         $request=jobPost::where("vacant",$filter)->get();
         \Log:: info($request);
         \Log:: info($filter);
-        return view("jobPosts",["requests"=>$request]);
+        $user=Auth::user();
+        $employer=employer::where("userId",$user->id)->get();
+        \Log::info($employer);
+        return view("jobPosts",["requests"=>$request,"employer"=>$employer[0]]);
 
     }
     function index2(){
-        return view("addJob",["job"=>null]);
+        $skills=skills::all();
+        return view("addJob",["job"=>null,"skills"=>$skills]);
     }
     function index3($id){
         $job=jobPost::find($id);
-        return view("addJob",["job"=>$job ]);
+        $skills=skills::all();
+        $requiredSkills=requiredSkills::where('jobId',$id)->get();
+        return view("addJob",["job"=>$job ,"skills"=>$skills,"requiredSkills"=>$requiredSkills]);
     }
     function create(Request $Request){
         $Request->validate([
@@ -39,6 +49,7 @@ class JobController extends Controller
 
         );
 
+
         // $user=Auth::user();
         $info =[
             'employerId'=>1,
@@ -53,8 +64,20 @@ class JobController extends Controller
         ];
 
         $job= jobPost::create($info);
+        $skills=$Request->input('skills');
         if ($job and $job->id >0 )
         {
+            \Log::info($Request->get("skills"));
+            foreach($skills as $skill){
+                $id=skills::where("name",$skill)->get()[0]->id;
+                $reqSkills=[
+                    'jobId'=>$job->id,
+                    'skillId'=>$id,
+                    'importance'=>"",
+                ];
+            requiredSkills::create($reqSkills);
+    
+            }
             return redirect("/jobPosts");
         }
 
@@ -64,7 +87,17 @@ class JobController extends Controller
     }
     function show($id){
         $job=jobPost::find($id);
-        return view("jobDetails",["job"=>$job ]);
+        $user=Auth::user();
+        $employer=employer::where("userId",$user->id)->get();
+        \Log::info($employer);
+        $reqSkills=requiredSkills::where("jobId",$id)->get();
+        $skills="";
+        foreach($reqSkills as $reqSkill){
+            if($skills!="")$skills.=", ";
+            $skills.=skills::find($reqSkill->skillId)->name;
+            
+        }
+        return view("jobDetails",["job"=>$job ,"employer"=>$employer[0],"skills"=>$skills]);
     }
     function delete($id){
         $job=jobPost::find($id);
@@ -80,6 +113,16 @@ class JobController extends Controller
         $job->applied=$Request->input('applied');
         $job->vacant=$Request->input('vacant');
         $job->category=$Request->input('category');
+        requiredSkills::where("jobId",$job->id)->delete();
+        $skills=$Request->input('skills');
+        foreach($skills as $skill){
+            $id=skills::where("name",$skill)->get()[0]->id;
+            $reqSkills=[
+                'jobId'=>$job->id,
+                'skillId'=>$id,
+                'importance'=>"",
+            ];
+        requiredSkills::create($reqSkills);}
         $job->save();
         return redirect("/jobPosts/details/".$job->id);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\event_summary;
 use Illuminate\Http\Request;
 use App\Models\EmployerRegistrationRequest;
 use DB;
@@ -35,5 +36,11 @@ class adminController extends Controller
         $request->status=2;
         $request->save(); 
         return redirect("/admin");
+    }
+
+    function showUserActivity(Request $request){
+        $events=event_summary::where("userId",$request->userId)->get();
+        return view("userActivity",["events"=>$events]);
+        
     }
 }

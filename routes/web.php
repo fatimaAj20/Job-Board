@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\employerController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegesterController;
@@ -49,7 +50,7 @@ Route::middleware(["auth"])->group(function () {
 
     Route::get('/employer', [employerController::class, "index2"]);
     Route::get('/jobPosts', [JobController::class, "index"]);
-    // Route::get('/jobRequests',[JobController::class,""]);
+    Route::get('/jobRequests',[ApplicationController::class,"jobRequestView"]);
 
     Route::get('/addJob', [JobController::class, "index2"]);
     Route::post('/addJob', [JobController::class, 'create'])->name("createJob");
@@ -59,8 +60,18 @@ Route::middleware(["auth"])->group(function () {
     Route::post('/addJob/edit/{id}', [JobController::class, 'save'])->name("save");
 
 
+    Route::get('/job/seekers/{id}', [ApplicationController::class,"listSeekers" ]);
+    Route::post('/job/seekers/{id}', [ApplicationController::class,"BestMatches" ]);
+
+
     Route::get('/employer/profile/{id}', [employerController::class, 'ViewProfile']);
     Route::post('/employer/profile/edit/{id}', [employerController::class, 'EditProfile']);
     Route::post('/employer/profile/{id}', [employerController::class, 'SaveProfile']);
 
+    Route::post('/activity',[adminController::class,'showUserActivity']);
+    Route::get("/activity",function(){
+        return view("userActivity",["events"=>null]);
+    });
+    Route::get("/Employernotifications",[employerController::class,"EmployerNotifications"]);
+    Route::get("/SeekerNotifications",[SeekerController::class,"SeekerNotifications"]);
 });

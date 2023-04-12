@@ -24,6 +24,7 @@
                 @endif
                 <th>Vacant</th>
                 <th>Category</th>
+                <th>Skills</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -37,6 +38,7 @@
                 @endif
                 <td>{{ $job->vacant }}</td>
                 <td>{{ $job->category }}</td>
+                <td>{{ $skills}}</td>
                 <td><a href="/addJob/edit/{{ $job->id }}">Edit</a></td>
                 <td><a href="/delete/{{ $job->id }}">Delete</a></td>
             </tr>

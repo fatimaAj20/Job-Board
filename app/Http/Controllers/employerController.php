@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\employer;
+use App\Models\notifications;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,5 +41,10 @@ class employerController extends Controller
         $employer->registrationNumber=$Request->input('registrationNumber');
         $employer->save();
         return redirect("/employer/profile/".$employer->id);
+    }
+    function EmployerNotifications(Request $request){
+        $notifications=notifications::where("userId",$request->userId)->get();
+        return view("notifications",["notifications"=>$notifications]);
+        
     }
 }
