@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class seeker extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'userId',
+        'birthday',
+        'location',
+        'profile_picture',
+        'resume',
+
+    ];
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('seekers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger("UserId");
-            $table->foreign("UserId")->references("id")->on("Users");
+            $table->unsignedBigInteger("userId")->nullable();
+            $table->foreign("userId")->references("id")->on("users");
             $table->date('birthday')->nullable();
             $table->string('location')->nullable();
             $table->string('profile_picture')->nullable();

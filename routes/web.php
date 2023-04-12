@@ -39,12 +39,11 @@ Route::middleware(["auth"])->group(function () {
     //the following routes will be used to nevigate the pages of the seeker
     Route::get('/seeker.home', [SeekerController::class, 'home'])->name("seekerhome");
     Route::post('/seeker.search',[SeekerController::class, 'search'] )->name('searchJobs');
-    Route::get('/seeker.profile/{id}', [SeekerController::class, 'profile'])->name("seekerprofile");
-    Route::get('/seeker.edit',[SeekerController::class, 'editView'])->name("seekeredit");
+    Route::get('/seeker.profile/{id?}', [SeekerController::class, 'profile'])->name("seekerprofile");
+    Route::get('/seeker.edit', [SeekerController::class , 'edit'])->name('profileEdit');
     Route::post('/seeker.edit', [SeekerController::class, 'editSave'])->name("seekeredit");
-    Route::get('/seeker.profile', [SeekerController::class, 'profile'])->name("seekerprofile");
-    Route::get('/seeker.edit', [SeekerController::class, 'edit'])->name("profileEdit");
-
+    Route::get('/seeker.editSkills', [SeekerController::class, 'addSkillForm'])->name("addSkillForm");
+    Route::post('/seeker.editSkills', [SeekerController::class, 'addSkill'])->name("addSkill");
 
 
 
