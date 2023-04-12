@@ -28,7 +28,7 @@
         <tbody>
             @foreach ($jobs as $job)
                 <tr>
-                    <td> {{ $job->title }}</td>
+                    <td><a href="{{ route('jobDetails', ['id' => $job->id]) }}">{{ $job->title }}</a></td>
                     <td>{{ $job->location }}</td>
                 </tr>
             @endforeach

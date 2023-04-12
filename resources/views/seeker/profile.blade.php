@@ -1,5 +1,6 @@
 @extends ('navbars.navBarSeeker')
 @section('content')
+
 <div class="user-profile">
   <div class="profile-header">
     <img src="{{ asset($user->profile_picture) }}" alt="Profile Picture">
@@ -26,6 +27,8 @@
     <a href="{{ asset($user->resume) }}" download>Download Resume</a>
   </div>
 
+  @if (Auth::check() && Auth::user()->id == $user->id)
   <a href="{{ route('profileEdit') }}" class="edit-profile-button">Edit Profile</a>
+   @endif
 </div>
 @endsection

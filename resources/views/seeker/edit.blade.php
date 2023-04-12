@@ -1,5 +1,7 @@
 @extends ('navbars.navBarSeeker')
 @section('content')
+
+<div style="height: 70vh; overflow-y: auto;">
 <form method="POST" action="{{ route('seekeredit') }}" enctype="multipart/form-data">
   @csrf
   <div class="form-group">
@@ -10,6 +12,7 @@
   <label for="about">About</label>
   <textarea class="form-control" id="about" name="about" rows="5">{{ $user->about }}</textarea>
   </div>
+
   <div class="form-group">
     <label for="phone">Phone number:</label>
     <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="{{ $user->phoneNumber }}">
@@ -30,12 +33,19 @@
     <label for="location">Location:</label>
     <input type="text" class="form-control" id="location" name="location" value="{{ $user->location }}">
   </div>
+
+
   <div class="form-group">
     <label for="resume">Resume:</label>
     <input type="file" class="form-control" id="resume" name="resume">
   </div>
+
+
+
   <button type="submit" class="btn btn-primary">Save changes</button>
 </form>
+</div>
+<div style="height: 30vh; overflow-y: auto;">
 <h3>Skills</h3>
     <ul>
       @foreach($user->skills as $skill)
@@ -43,6 +53,8 @@
       @endforeach
     </ul>
     <a href="{{route('addSkillForm')}}" class="edit-profile-button">add skill</a>
+    </div>
+
 @endsection
 
 

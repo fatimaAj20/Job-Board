@@ -4,7 +4,7 @@
 
 <form class="login-box searchbox" method='post' action="{{ route('searchJobs') }}">
   @csrf
-  
+
   <h2>Search Box </h2>
   <div class="user-box">
       <input type="text" id="location" name="location">
@@ -20,5 +20,21 @@
   </div>
   <input type="submit" value="Submit">
 </form>
+<table>
+        <thead>
+            <tr>
+                <th>Job Title</th>
+                <th>Job Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($jobs as $job)
+                <tr>
+                    <td><a href="{{ route('jobDetails', ['id' => $job->id]) }}">{{ $job->title }}</a></td>
+                    <td>{{ $job->location }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @endsection
 

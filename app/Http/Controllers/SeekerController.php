@@ -16,7 +16,8 @@ class SeekerController extends Controller
     // once logged in
     public function home()
 {
-    return view('seeker.home');
+    $jobs=[];
+    return view('seeker.home', ['jobs' => $jobs]);
 }
 
 
