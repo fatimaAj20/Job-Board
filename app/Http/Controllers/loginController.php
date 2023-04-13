@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\employer;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -32,6 +34,12 @@ class loginController extends Controller
                 return redirect("/seeker.home");
             }
             else{
+                if(employer::Where("userId", Auth::user()->id)->get()[0]->active == 0){
+                    Auth::logout();
+                    return back()->withErrors([
+                        'email' => 'The provided employer account is inactive',
+                    ])->onlyInput('email');
+                }
                 return redirect("/employer");
             }
         }

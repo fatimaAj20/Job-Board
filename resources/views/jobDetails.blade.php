@@ -12,37 +12,27 @@
 
 <body class="antialiased">
     @include('navbars.navBar')
-    <div class="container">
-        <table>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Location</th>
-                <th>Salary</th>
-                @if ($job->vacant == 0)
-                    <th>Applicants</th>
+        <div class="login-box job-details" style="margin-top: 0">
+            <div style="float:right; text-align:center;">
+                @if($job->vacant ==0)
+                <h3 style="color:rgb(72, 244, 72);">Vacant</h3>
+                @else
+                <span style="color:rgb(255, 50, 50)">Occupied</span>
                 @endif
-                <th>Vacant</th>
-                <th>Category</th>
-                <th>Skills</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            <tr>
-                <td>{{ $job->title }}</td>
-                <td>{{ $job->description }}</td>
-                <td>{{ $job->location }}</td>
-                <td>{{ $job->salary }}</td>
-                @if ($job->vacant == 0)
-                    <td>{{ $job->applied }}</td>
-                @endif
-                <td>{{ $job->vacant }}</td>
-                <td>{{ $job->category }}</td>
-                <td>{{ $skills}}</td>
-                <td><a href="/addJob/edit/{{ $job->id }}">Edit</a></td>
-                <td><a href="/delete/{{ $job->id }}">Delete</a></td>
-            </tr>
-        </table>
-    </div>
+                <p>Applicants: {{ $job->applied }}</p>
+                <p>Job Location: {{ $job->location }}</p>
+                <p>Salary: {{ $job->salary }}</p>
+            </div>
+            <h1>{{ $job->title }}</h1>
+
+                <h4> Job Description: </h4>
+                <p>{{ $job->description }}</p>
+
+        </div>
+
+        <div class="center" style="margin-bottom: 20px; width:auto">
+            <a class="button rejected" href="/addJob/edit/{{ $job->id }}">Edit</a>
+            <a class="button approved" href="/delete/{{ $job->id }}">Delete</a>
+        </div>
 </body>
 </html>

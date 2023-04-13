@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\EmployerRegistrationRequest;
 use App\Models\User;
 use App\Models\employer;
@@ -23,7 +24,8 @@ class RegesterController extends Controller
 
 
 
-    public function createSeeker(Request $Request){
+    public function createSeeker(Request $Request)
+    {
 
 
         //this function is for creating the account for seeker
@@ -49,25 +51,23 @@ class RegesterController extends Controller
         $user = User::create($info);
 
 
-        if ($user and $user->id > 0){
+        if ($user and $user->id > 0) {
 
-            $seekerInfo=
-            [
-                'userId'=> $user->id,
+            $seekerInfo =
+                [
+                    'userId' => $user->id,
 
-            ];
-            $seeker=seeker::create($seekerInfo);
+                ];
+            $seeker = seeker::create($seekerInfo);
             return redirect(route('login'));
-
-        }
-        else
-        {
+        } else {
             return redirect(route('login'));
         }
     }
 
 
-    public function createCompany(Request $Request){
+    public function createCompany(Request $Request)
+    {
         //this function is for the regestration of the employers/companies
         // we have to first insert them as users
         //manage their files
@@ -75,27 +75,25 @@ class RegesterController extends Controller
         //there activity should be set to pending
 
         $Request->validate([
-            'companyName'=> ['required' ],
-            'email'=> ['required','email'],
-            'password'=> [ 'required', 'confirmed'],
-            'phoneNumber'=> ['required'],
+            'companyName' => ['required'],
+            'email' => ['required', 'email'],
+            'password' => ['required', 'confirmed'],
+            'phoneNumber' => ['required'],
             'certificate' => ['required'],
 
 
         ]);
-        $info =[
-            'name'=> $Request->input('companyName'),
-            'email'=> $Request->input('email'),
+        $info = [
+            'name' => $Request->input('companyName'),
+            'email' => $Request->input('email'),
             'password' => Hash::make($Request->input('password')),
 
-            'role'=> '2'
+            'role' => '2'
         ];
-        if(isset($Request['phoneNumber']))
-        {
-            $info['phoneNumber']= $Request->input('phoneNumber');
-        }
-        else
-        $info['phoneNumber']='';
+        if (isset($Request['phoneNumber'])) {
+            $info['phoneNumber'] = $Request->input('phoneNumber');
+        } else
+            $info['phoneNumber'] = '';
 
 
 
@@ -103,7 +101,7 @@ class RegesterController extends Controller
 
 
 
-        if ($user and $user->id > 0 ) {
+        if ($user and $user->id > 0) {
             if ($Request->hasFile('certificate')) {
                 $file = $Request->file('certificate');
 
@@ -113,34 +111,30 @@ class RegesterController extends Controller
 
                 $file->move($storagePath, $fileName);
                 $path = '/storage/certificates/' . $fileName;
-                 $companyInfo = [
-                'userId' => $user->id,
-                'websiteLink' => $Request->input('website'),
-                'description' => $Request->input('description'),
-                'location' => $Request->input('location'),
-                'active' => 1, //asuming that 1 is pending
-                'registrationNumber' => $Request->input('registrationNumber'),
-                "lebanonCreftificateOfIncorporation" => $path,
-                'logo'=>'',
+                $companyInfo = [
+                    'userId' => $user->id,
+                    'websiteLink' => $Request->input('website'),
+                    'description' => $Request->input('description'),
+                    'location' => $Request->input('location'),
+                    'active' => 0,
+                    'registrationNumber' => $Request->input('registrationNumber'),
+                    "lebanonCreftificateOfIncorporation" => $path,
+                    'logo' => '',
 
-            ];
+                ];
 
-            $company = employer::create($companyInfo);
-            $requestinfo =
-            [
-                'employerId'=> $company->id,
-                'status'=> '1'
-            ];
+                $company = employer::create($companyInfo);
+                $requestinfo =
+                    [
+                        'employerId' => $company->id,
+                        'status' => '1'
+                    ];
 
-            // EmployerRegistrationRequest::create($requestinfo );
-            // return redirect(route('login'));
-        }
-            } else {
-               view('welcome');
-
+                EmployerRegistrationRequest::create($requestinfo );
+                return redirect(route('login'));
             }
-
-
-
+        } else {
+            view('welcome');
+        }
     }
 }

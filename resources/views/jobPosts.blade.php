@@ -13,12 +13,36 @@
 <body class="antialiased">
     @include('navbars.navBar')
     <div class="container">
-        <a href='/jobPosts?filter=1'>occupied</a>&nbsp;&nbsp;
-        <a href='/jobPosts?filter=0'>vacant</a>&nbsp;&nbsp;
-        @foreach ($requests as $request)
-            <br>
-            <a href="/jobPosts/details/{{ $request->id }}">{{ $request->title }}</a>
-        @endforeach
+        <div class="center" style="margin-bottom: 20px">
+            <a class="button rejected" href='/jobPosts?filter=1'>Occupied</a>
+            <a class="button approved" href='/jobPosts?filter=0'>Vacant</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Salary</th>
+                    <th>Category</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($requests as $job)
+                <tr>
+                    <td><a href="/jobPosts/details/{{$job->id}}">{{ $job->title }}</a></td>
+                    <td>{{ $job->description }}</td>
+                    <td>{{ $job->location }}</td>
+                    <td>{{ $job->salary }}</td>
+                    <td>{{ $job->category }}</td>
+                    <td><a href="/addJob/edit/{{ $job->id }}">Edit</a></td>
+                    <td><a href="/delete/{{ $job->id }}">Delete</a></td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </body>
 </html>

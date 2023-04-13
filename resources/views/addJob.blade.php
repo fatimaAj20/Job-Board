@@ -6,8 +6,9 @@
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
 </head>
 
-<body>
-    <div class="login-box">
+<body style="overflow: visible">
+	@include('navbars.navBar')
+    <div class="login-box" style="margin-top: 0; padding-bottom:0">
         <h2>Job to Post</h2>
         @if (is_null($job))
             <form action="{{ route('createJob') }}" method="POST">
@@ -31,20 +32,17 @@
 			<label for="salary">Salary:</label>
 		</div>
 		<div class="user-box">
-			<input type="number" id="applied" name="applied" value="{{ is_null($job) ? 0 : $job->applied }}" required>
-			<label for="applied">Appplied:</label>
-		</div>
-		<div class="user-box">
 			<input type="number" id="vacant" name="vacant" value="{{ is_null($job) ? 0 : $job->vacant }}" required>
 			<label for="vacant">Vacant:</label>
-		</div>
-		<div class="user-box">
-			<select name="skills[]" id="skills" multiple>
+		</div>		
+		<div>
+			<label for="skills">Skills:</label>
+			<br>
+			<select name="skills[]" id="skills" multiple size="3">
 			@foreach($skills as $skill )
 			<option value="{{$skill->name}}" @if (!is_null($job)) @foreach($requiredSkills as $reqSkill) @if($reqSkill->skillId == $skill->id) selected="selected"  @endif @endforeach @endif>{{$skill->name}}</option>
 			@endforeach
 			</select> 
-			<label for="skills">Skills:</label>
 		</div>
 		<div class="user-box">
 			<input type="text" id="category" name="category" value="{{ is_null($job) ? null : $job->category }}" required>

@@ -15,22 +15,25 @@ class employerController extends Controller
         $user=User::find($emp->userId);
         return view("employerDetails",["employer"=>$emp ,"user"=>$user]);
     }
+
     function index2(){
         $user=Auth::user();
         $employer=employer::where("userId",$user->id)->get();
-        \Log::info($employer);
         return view("Employer",["employer"=>$employer[0]]);
     }
+
     function ViewProfile($id){
         $employer=employer::find($id);
         $view=1;
         return view("EmployerProfile",["employer"=>$employer ,"view"=>$view]);
     }
+
     function EditProfile($id){
         $employer=employer::find($id);
         $view=0;
         return view("EmployerProfile",["employer"=>$employer ,"view"=>$view]);
     }
+
     function SaveProfile($id,Request $Request){
         $employer=employer::find($id);
         $employer->websiteLink=$Request->input('websiteLink');
@@ -42,9 +45,9 @@ class employerController extends Controller
         $employer->save();
         return redirect("/employer/profile/".$employer->id);
     }
+    
     function EmployerNotifications(Request $request){
         $notifications=notifications::where("userId",$request->userId)->get();
         return view("notifications",["notifications"=>$notifications]);
-        
     }
 }
