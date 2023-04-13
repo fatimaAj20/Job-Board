@@ -59,8 +59,8 @@ Route::middleware(["auth"])->group(function () {
     Route::post('/addJob/edit/{id}', [JobController::class, 'save'])->name("save");
 
 
-    Route::get('/job/seekers/{id}', [ApplicationController::class,"listSeekers" ]);
-    Route::post('/job/seekers/{id}', [ApplicationController::class,"BestMatches" ]);
+    Route::get('/viewApplications/{id}', [ApplicationController::class,"listSeekers" ]);
+    Route::post('/viewApplications/{id}', [ApplicationController::class,"BestMatches" ]);
 
 
     Route::get('/employer/profile/{id}', [employerController::class, 'ViewProfile']);

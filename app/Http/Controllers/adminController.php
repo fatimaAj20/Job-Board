@@ -15,13 +15,8 @@ class adminController extends Controller
         $names=array();
         foreach($requests as $req){
            $result= DB::select("select getEmployerName(".$req->employerId.") as name");
-           \Log::info($result);
            $names[$req->id]=$result[0]->name;
-
         }
-        \Log:: info($requests);
-        \Log:: info($filter);
-        \Log::info($names);
         return view("admin",["requests"=>$requests,"names"=>$names]);
     }
     function rejectRequest($id){
@@ -32,7 +27,6 @@ class adminController extends Controller
     }
     function approveRequest($id){
         $request= EmployerRegistrationRequest::find($id);
-        \Log:: info($request);
         $request->status=2;
         $request->save(); 
         return redirect("/admin");

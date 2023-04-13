@@ -10,17 +10,32 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>
 
-<body class="antialiased">
-    @include('navbars.navBar')
+<body class="antialiased"> 
+        @include('navbars.navBar')
+        <div class="container">
+            <div class="center" style="margin-bottom: 20px">
+                <a class="button rejected" href='/jobPosts?filter=1'>Occupied</a>
+                <a class="button approved" href='/jobPosts?filter=0'>Vacant</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Messages</th>
+                    </tr>
+                </thead>
+                <tbody>
     <div class="container">
      
         @if(!is_null($notifications))
         <table>
+            @foreach($notifications as $notification)
             <tr>
-                @foreach($notifications as $notification)
+
                 <td>{{ $notification->message }}</td>
-                @endforeach
+                
             </tr>
+            @endforeach
+        </tbody>
         </table>
         @endif
     </div>

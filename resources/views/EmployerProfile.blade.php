@@ -7,7 +7,8 @@
 </head>
 
 <body>
-    <div class="login-box">
+	@include('navbars.navBar')
+    <div class="login-box" style="margin-top:0">
         @if ($view==1)
             <form action='/employer/profile/edit/{{$employer->id }}' method="POST">
         @else
