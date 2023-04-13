@@ -237,7 +237,8 @@ public function matchedSeeker($job){
     // return the list of seekers that match specific job
 }
 function SeekerNotifications(Request $request){
-    $notifications=notifications::where("userId",$request->userId)->get();
+    $user=Auth::user();
+    $notifications=notifications::where("userId",$user->id)->get();
     return view("notifications",["notifications"=>$notifications]);
     
 }

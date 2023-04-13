@@ -36,15 +36,19 @@ class employerController extends Controller
         $employer->websiteLink=$Request->input('websiteLink');
         $employer->description= $Request->input('description');
         $employer->location=$Request->input('location');
-        $employer->logo=$Request->input('logo');
+        if(!is_null($Request->logo)){
+            $employer->logo=$Request->input('logo');
+        }
         $employer->lebanonCreftificateOfIncorporation=$Request->input('lebanonCreftificateOfIncorporation');
         $employer->registrationNumber=$Request->input('registrationNumber');
         $employer->save();
         return redirect("/employer/profile/".$employer->id);
     }
-    function EmployerNotifications(Request $request){
-        $notifications=notifications::where("userId",$request->userId)->get();
-        return view("notifications",["notifications"=>$notifications]);
+    function EmployerNotifications(){
+        $user=Auth::user();
+        $employer=employer::where("userId",$user->id)->get();
+        $notifications=notifications::where("userId",$user->id)->get();
+        return view("notifications",["notifications"=>$notifications,"employer"=>$employer[0]]);
         
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\employer;
 use App\Models\requiredSkills;
+use App\Models\skill;
 use App\Models\skills;
 use Dotenv\Util\Str;
 use Illuminate\Http\Request;
@@ -25,12 +26,12 @@ class JobController extends Controller
 
     }
     function index2(){
-        $skills=skills::all();
+        $skills=skill::all();
         return view("addJob",["job"=>null,"skills"=>$skills]);
     }
     function index3($id){
         $job=jobPost::find($id);
-        $skills=skills::all();
+        $skills=skill::all();
         $requiredSkills=requiredSkills::where('jobId',$id)->get();
         return view("addJob",["job"=>$job ,"skills"=>$skills,"requiredSkills"=>$requiredSkills]);
     }
@@ -69,7 +70,7 @@ class JobController extends Controller
         {
             \Log::info($Request->get("skills"));
             foreach($skills as $skill){
-                $id=skills::where("name",$skill)->get()[0]->id;
+                $id=skill::where("name",$skill)->get()[0]->id;
                 $reqSkills=[
                     'jobId'=>$job->id,
                     'skillId'=>$id,
@@ -94,7 +95,7 @@ class JobController extends Controller
         $skills="";
         foreach($reqSkills as $reqSkill){
             if($skills!="")$skills.=", ";
-            $skills.=skills::find($reqSkill->skillId)->name;
+            $skills.=skill::find($reqSkill->skillId)->name;
             
         }
         return view("jobDetails",["job"=>$job ,"employer"=>$employer[0],"skills"=>$skills]);
@@ -116,7 +117,7 @@ class JobController extends Controller
         requiredSkills::where("jobId",$job->id)->delete();
         $skills=$Request->input('skills');
         foreach($skills as $skill){
-            $id=skills::where("name",$skill)->get()[0]->id;
+            $id=skill::where("name",$skill)->get()[0]->id;
             $reqSkills=[
                 'jobId'=>$job->id,
                 'skillId'=>$id,

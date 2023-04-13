@@ -17,6 +17,7 @@
     <div class="container">
         <p>{{$user->name}}</p>
     </div>
+  
 </body>
 
 </html>

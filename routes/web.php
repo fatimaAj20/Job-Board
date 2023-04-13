@@ -71,6 +71,6 @@ Route::middleware(["auth"])->group(function () {
     Route::get("/activity",function(){
         return view("userActivity",["events"=>null]);
     });
-    Route::get("/Employernotifications",[employerController::class,"EmployerNotifications"]);
-    Route::get("/SeekerNotifications",[SeekerController::class,"SeekerNotifications"]);
+    Route::post("/Employernotifications",[employerController::class,"EmployerNotifications"]);
+    Route::post("/SeekerNotifications",[SeekerController::class,"SeekerNotifications"]);
 });

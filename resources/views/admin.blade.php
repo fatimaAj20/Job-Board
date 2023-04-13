@@ -28,9 +28,9 @@
             <tbody>
                 @foreach ($requests as $request)
                     <tr>
-                        <td> <a
+                        {{-- <td> <a
                                 href="/admin/employers/{{ $request->employerId }}">{{ $names[$request->employerId] }}</a>
-                        </td>
+                        </td> --}}
                         @if ($request->status == 1)
                             <td>
                                 <form method="post" action="{{ route('reject', $request->id) }}">

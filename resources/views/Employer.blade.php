@@ -39,6 +39,10 @@
             </div>
         </div>
     </div>
+    <form action="/Employernotifications" method="post">
+        @csrf
+        <input type="submit" name="submit" value="notifications">
+    </form>
 </body>
 
 </html>

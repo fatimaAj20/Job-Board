@@ -26,7 +26,7 @@
 			<label for="location">Location:</label>
 		</div>
 		<div class="user-box">
-			<input type="text" id="lebanonCreftificateOfIncorporation " name="lebanonCreftificateOfIncorporation" value="{{$employer->lebanonCreftificateOfIncorporation }}" required>
+			<input type="file" id="lebanonCreftificateOfIncorporation " name="lebanonCreftificateOfIncorporation" value="{{$employer->lebanonCreftificateOfIncorporation }}" required>
 			<label for="lebanonCreftificateOfIncorporation">lebanon Creftificate of Incorporation:</label>
 		</div>
 		<div class="user-box">
@@ -35,7 +35,7 @@
 		</div>
 
 		<div class="user-box">
-			<input type="text" id="logo" name="logo" value="{{ $employer->logo  }}" required>
+			<input type="file" id="logo" name="logo" value="{{ $employer->logo  }}" required>
 			<label for="logo">Logo:</label>
 		</div>
        <br>
