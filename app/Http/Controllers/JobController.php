@@ -81,15 +81,20 @@ class JobController extends Controller
     function show($id)
     {
         $job = jobPost::find($id);
-        $user = Auth::user();
-        $employer = employer::where("userId", $user->id)->get();
         $reqSkills = requiredSkills::where("jobId", $id)->get();
         $skills = "";
         foreach ($reqSkills as $reqSkill) {
             if ($skills != "") $skills .= ", ";
             $skills .= skill::find($reqSkill->skillId)->name;
         }
-        return view("jobDetails", ["job" => $job, "employer" => $employer[0], "skills" => $skills]);
+        $user = Auth::user();
+        if($user->role == 2){
+            $employer = employer::where("userId", $user->id)->get();
+            return view("jobDetails", ["job" => $job, "employer" => $employer[0], "skills" => $skills]);
+        }
+        else{
+            return view("jobDetails", ["job" => $job, "skills" => $skills]);
+        }
     }
 
     function delete($id)

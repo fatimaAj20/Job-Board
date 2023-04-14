@@ -13,144 +13,141 @@ use App\Models\skill;
 
 class SeekerController extends Controller
 {
-
     // once logged in
     public function home()
-{
-    $jobs=[];
-    return view('seeker.home', ['jobs' => $jobs]);
-}
+    {
+        $jobs = [];
+        $user = Auth::user();
+        $seeker = Seeker::where('userId', $user->id)->first();
+        return view('seeker.home', ['jobs' => $jobs, 'seeker'=>$seeker]);
+    }
 
+    //when searching fror a specific job using the location category or title
+    public function search(Request $request)
+    {
+        //get input
+        $location = $request->input('location') ?? null;
+        $category = $request->input('category') ?? null;
+        $title = $request->input('title') ?? null;
 
-//when searching fror a specific job using the location category or title
-public function search(Request $request)
-{
-    //get input
-    $location = $request->input('location') ?? null;
-    $category = $request->input('category') ?? null;
-    $title = $request->input('title') ?? null;
-
-    //find results
-
-    $jobs = JobPost::when($location, function ($query, $location) {
-            return $query->where('location',$location);
+        //find results
+        $jobs = JobPost::when($location, function ($query, $location) {
+            return $query->where('location', $location);
         })
-        ->when($category, function ($query, $category) {
-            return $query->where('category', $category);
-        })
-        ->when($title, function ($query, $title) {
-            return $query->where('title', $title);
-        })
-        ->get();
+            ->when($category, function ($query, $category) {
+                return $query->where('category', $category);
+            })
+            ->when($title, function ($query, $title) {
+                return $query->where('title', $title);
+            })
+            ->get();
         //pass them to the view to show
+        $user = Auth::user();
+        $seeker = Seeker::where('userId', $user->id)->first();
 
-    return view('seeker.search', ['jobs' => $jobs]);
-}
+        return view('seeker.home', ['jobs' => $jobs, 'seeker' =>$seeker]);
+    }
 
+    //when viewing the profile
+    public function profile($seekerId)
+    {
+        // this function will get the array of skills for the specific user
+        //then it will add them to the user array and then pass it to the profile
+        //get user
+        $user = Auth::user();
 
-
-//when viewing the profile
-public function profile()
-{
-
-      // this function will get the array of skills for the specific user
-      //then it will add them to the user array and then pass it to the profile
-      //get user
-      $user=Auth::user();
-      //get his skills
-      $userSkills = DB::table('seeker_skills')
-      ->join('skills', 'seeker_skills.skill_id', '=', 'skills.id')
-      ->where('seeker_skills.user_id', '=', $user->id)
-      ->select('skills.name')
-      ->get();
+        $seeker = Seeker::find($seekerId);
+        //get his skills
+        $userSkills = DB::table('seeker_skills')
+            ->join('skills', 'seeker_skills.skillId', '=', 'skills.id')
+            ->where('seeker_skills.seekerId', '=', $seeker->id)
+            ->select('skills.name')
+            ->get();
 
         $skillsArray = array();
 
         foreach ($userSkills as $skill) {
-        array_push($skillsArray, $skill->name);
+            array_push($skillsArray, $skill->name);
         }
         //add to the user array and pass it on t the view to use it
 
-        $user['skills']= $skillsArray;
+        $user['skills'] = $skillsArray;
         //get the resume
 
 
-        $seeker = Seeker::where('userId', $user->id)->first();
-        if ($seeker)
-        {
-           $resume = $seeker->resume;
-           $profile_picture=$seeker->profile_picture;
-           $about= $seeker->about;
-        }else
-        {
-            $resume=null;
+        if ($seeker) {
+            $resume = $seeker->resume;
+            $profile_picture = $seeker->profile_picture;
+            $about = $seeker->about;
+            $location = $seeker->location;
+            $birthday = $seeker->birthday;
+        } else {
+            $resume = null;
         }
-        $user['resume']= $resume;
-        $user['profile_picture']= $profile_picture;
-        $user['about']=$about;
+        $user['resume'] = $resume;
+        $user['profile_picture'] = $profile_picture;
+        $user['about'] = $about;
+        $user["birthday"] = $birthday;
+        $user["location"] = $location;
+        return view('seeker.profile', ['user' => $user, 'seeker' =>$seeker]);
+    }
 
+    // when they press on the edit button
+    public function edit()
+    {
 
-
-        return view('seeker.profile', ['user' => $user]);
-
-
-
-}
-
-// when they press on the edit button
-public function edit()
-{
-
-      //get user
-      $user=Auth::user();
-      //get his skills
-      $userSkills = DB::table('seeker_skills')
-      ->join('skills', 'seeker_skills.skill_id', '=', 'skills.id')
-      ->where('seeker_skills.user_id', '=', $user->id)
-      ->select('skills.name')
-      ->get();
+        //get user
+        $user = Auth::user();
+        $seeker = Seeker::where('userId', $user->id)->first();
+        //get his skills
+        $userSkills = DB::table('seeker_skills')
+            ->join('skills', 'seeker_skills.skillId', '=', 'skills.id')
+            ->where('seeker_skills.seekerId', '=', $seeker->id)
+            ->select('skills.name')
+            ->get();
 
         $skillsArray = array();
 
         foreach ($userSkills as $skill) {
-        array_push($skillsArray, $skill->name);
+            array_push($skillsArray, $skill->name);
         }
         //add to the user array and pass it on t the view to use it
 
-        $user['skills']= $skillsArray;
+        $user['skills'] = $skillsArray;
         //get the resume
 
 
         $seeker = Seeker::where('userId', $user->id)->first();
-        if ($seeker)
-        {
-           $resume = $seeker->resume;
-           $profile= $seeker->profile_picture;
-           $location= $seeker->location;
-           $birthday=$seeker->birthday;
-        }else
-        {
-            $resume=null;
-            $profile=null;
-            $birthday=null;
-            $location=null;
+        if ($seeker) {
+            $resume = $seeker->resume;
+            $profile = $seeker->profile_picture;
+            $location = $seeker->location;
+            $birthday = $seeker->birthday;
+            $about = $seeker->about;
+        } else {
+            $resume = null;
+            $profile = null;
+            $birthday = null;
+            $location = null;
+            $about = null;
         }
-        $user['birthday']= $birthday;
-        $user["profile_picture"]=$profile;
-        $user["location"]=$location;
-        $user['resume']= $resume;
+        $user['birthday'] = $birthday;
+        $user["profile_picture"] = $profile;
+        $user["location"] = $location;
+        $user['resume'] = $resume;
+        $user['about'] = $about;
 
 
+        return view('seeker.edit', ['skills' => skill::all(), 'user' => $user, 'seeker' =>$seeker]);
+    }
 
-    return view('seeker.edit', ['user'=>$user]);
-}
-
-// after the form is submitted
-public function editSave(Request $request)
-{
+    // after the form is submitted
+    public function editSave(Request $request)
+    {
 
         $user = Auth::user();
         $userId = $user->id;
+
 
         // Update users table
         $user->name = $request->input('name');
@@ -186,9 +183,17 @@ public function editSave(Request $request)
 
         $seeker->save();
 
-        return $this->profile();
+        return $this->profile($seeker->id);
+    }
 
+    // this function is used to add skills to the profile of a user
+    public function addSkill(Request $request)
+    {
+        $request->validate([
+            'skill' => ['required'],
+        ]);
 
+<<<<<<< HEAD
 }
 // this function is to get all the skills found in the data base
 public function addSkillForm()
@@ -243,4 +248,30 @@ function SeekerNotifications(Request $request){
 
 }
 
+=======
+        $user_id = Auth::id(); // Get the current user's ID
+        $skill_id = $request->skill; // Get the selected skill's ID from the request
+        $seeker = Seeker::where('userId', $user_id)->first();
+        // Add the skill to the user's profile
+        DB::table('seeker_skills')->insert(
+            ['seekerId' => $seeker->id, 'skillId' => $skill_id]
+        );
+
+        // Redirect back to the edit skills  page
+        return redirect('/seeker.edit')->with('success', 'Skill added successfully!');
+    }
+
+    public function matchedSeeker($job)
+    {
+        // return the list of seekers that match specific job
+    }
+
+    function SeekerNotifications(Request $request)
+    {
+        $user = Auth::user();
+        $seeker = Seeker::where('userId', $user->id)->first();
+        $notifications = notifications::where("userId", $user->id)->get();
+        return view("notifications", ["notifications" => $notifications, 'seeker' =>$seeker]);
+    }
+>>>>>>> a51a3cde5ab464b0b7970b35dcd89584ec8948f9
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("userId");
             $table->foreign("userId")->references("id")->on("users");
             $table->string("event_type");
+            $table->timestamps();
         });
     }
 

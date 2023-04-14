@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string("logo")->nullable();
             $table->string("location")->nullable();
             $table->integer("active");
-            $table->string("lebanonCreftificateOfIncorporation");
-            $table->string("registrationNumber");
+            $table->string("lebanonCreftificateOfIncorporation")->nullable();
+            $table->string("registrationNumber")->nullable();
             $table->timestamps();
         });
 

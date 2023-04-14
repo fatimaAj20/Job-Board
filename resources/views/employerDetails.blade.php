@@ -14,7 +14,7 @@
 
 <body>
     @include("navbars.navBar")
-    <div class="container">
+    <div class="flex-container">
         <p>{{$user->name}}</p>
     </div>
   
