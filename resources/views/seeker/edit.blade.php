@@ -1,62 +1,84 @@
 @extends ('navbars.navBarSeeker')
 @section('content')
+    <div class="flex-container">
 
-<div style="height: 70vh; overflow-y: auto;">
-<form method="POST" action="{{ route('seekeredit') }}" enctype="multipart/form-data">
-  @csrf
-  <div class="form-group">
-    <label for="name">Name:</label> <br>
-    <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
-  </div>
-  <div class="form-group">
-  <label for="about">About</label>
-  <textarea class="form-control" id="about" name="about" rows="5">{{ $user->about }}</textarea>
-  </div>
+        <div class="flex-container">
+            <div class="form-box content-box" style="width:800px">
+                <h1>Profile Details</h1>
+                <form method="POST" action="{{ route('seekeredit') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="user-box">
+                        <input type="text" id="name" name="name" value="{{ $user->name }}">
+                        <label for="name">Name:</label> <br>
+                    </div>
+                    <div class="user-box">
+                        <label for="about">About</label>
+                        <br>
+                        <textarea id="about" name="about" rows="5">{{ $user->about }}</textarea>
+                    </div>
+                    <div class="user-box">
+                        <input type="text" id="phoneNumber" name="phoneNumber" value="{{ $user->phoneNumber }}">
+                        <label for="phone">Phone number:</label>
 
-  <div class="form-group">
-    <label for="phone">Phone number:</label>
-    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" value="{{ $user->phoneNumber }}">
-  </div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}">
-  </div>
-  <div class="form-group">
-    <label for="birthday">Birthday:</label>
-    <input type="date" class="form-control" id="birthday" name="birthday" value="{{ $user->birthday }}">
-  </div>
-  <div class="form-group">
-    <label for="profile_picture">Profile picture:</label>
-    <input type="file" class="form-control" id="profile_picture" name="profile_picture" value="{{$user->profile_picture}}">
-  </div>
-  <div class="form-group">
-    <label for="location">Location:</label>
-    <input type="text" class="form-control" id="location" name="location" value="{{ $user->location }}">
-  </div>
+                    </div>
+                    <div class="user-box">
+                        <input type="email" id="email" name="email" value="{{ $user->email }}">
+                        <label for="email">Email:</label>
 
+                    </div>
+                    <div class="user-box">
+                        <input type="date" id="birthday" name="birthday" value="{{ $user->birthday }}">
+                        <label for="birthday">Birthday:</label>
 
-  <div class="form-group">
-    <label for="resume">Resume:</label>
-    <input type="file" class="form-control" id="resume" name="resume">
-  </div>
+                    </div>
+                    <div class="user-box">
+                        <input type="file" id="profile_picture" name="profile_picture"
+                            value="{{ $user->profile_picture }}">
+                        <label for="profile_picture">Profile picture:</label>
 
+                    </div>
+                    <div class="user-box">
+                        <input type="text" id="location" name="location" value="{{ $user->location }}">
+                        <label for="location">Location:</label>
 
+                    </div>
+                    <div class="user-box">
+                        <input type="file" id="resume" name="resume">
+                        <label for="resume">Resume:</label>
 
-  <button type="submit" class="btn btn-primary">Save changes</button>
-</form>
-</div>
-<div style="height: 30vh; overflow-y: auto;">
-<h3>Skills</h3>
-    <ul>
-      @foreach($user->skills as $skill)
-        <li>{{ $skill}}</li>
-      @endforeach
-    </ul>
-    <a href="{{route('addSkillForm')}}" class="edit-profile-button">add skill</a>
-    </div>
+                    </div>
 
-@endsection
+                    <div class="user-box">
+                        <h2>Skills:</h2>
+                        <ul>
+                            @foreach ($user->skills as $skill)
+                                <li style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); padding:10px; display: inline-block; margin:30px;">{{ $skill }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <input type="submit" value="Save changes" >
+                </form>
+            </div>
+        </div>
 
+        <div style="margin: 100px">
 
-
-
+            <div class="content-box form-box">
+                <form action="{{ route('addSkillForm') }}" method="POST">
+                    @csrf
+                    <div class="user-box">
+                        <label for="skill">Choose a Skill:</label>
+                        <br>
+                        <br>
+                        <select name="skill">
+                            @foreach ($skills as $skill)
+                                <option style="color: purple" value="{{ $skill->id }}">{{ $skill->name }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+                    </div>
+                    <input type="submit" value="Add Skill">
+                </form>
+            </div>
+        </div>
+    @endsection

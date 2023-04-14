@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,34 +9,28 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 </head>
 
-<body class="antialiased"> 
-        @include('navbars.navBar')
-        <div class="container">
-            <div class="center" style="margin-bottom: 20px">
-                <a class="button rejected" href='/jobPosts?filter=1'>Occupied</a>
-                <a class="button approved" href='/jobPosts?filter=0'>Vacant</a>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Messages</th>
-                    </tr>
-                </thead>
-                <tbody>
-    <div class="container">
-     
-        @if(!is_null($notifications))
+<body class="antialiased">
+    @include('navbars.navBar')
+    <div class="flex-container">
         <table>
-            @foreach($notifications as $notification)
-            <tr>
-
-                <td>{{ $notification->message }}</td>
-                
-            </tr>
-            @endforeach
-        </tbody>
+            <thead>
+                <tr>
+                    <th colspan="4">Message</th>
+                    <th colspan="1">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!is_null($notifications))
+                    @foreach ($notifications as $notification)
+                        <tr>
+                            <td>{{ $notification->message }}</td>
+                            <td>{{ $notification->created_at }}</td>
+                        </tr>
+                    @endforeach
+            </tbody>
         </table>
         @endif
     </div>
 </body>
+
 </html>

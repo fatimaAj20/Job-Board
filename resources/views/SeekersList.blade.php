@@ -12,23 +12,53 @@
 
 <body>
     @include('navbars.navBar')
-    <div>
-        @if($matches==0)
-        <form action='/job/seekers/{{$id}}' method="post">
-            @csrf
-            <input type="submit" value="Best Matches">
-        </form>
+
+    @if($matches ==1)
+     <div class="flex-container">
+        <h2 style="color:purple">The top candidates for this position are the following:</h2>
+    </div>
+    @endif
+    <div class="flex-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Seeker Name
+                    </th>
+
+                    <th colspan="2">
+                        Action
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($seekers as $seeker)
+                    <tr>
+                        <td><a href="/seeker.profile/{{ $seeker->id }}">{{ $seeker->name }}</a></td>
+                        <td colspan="2">
+                            <div class="flex-container" style="margin: 0; padding:0">
+                                <a class="rejected button" href="/reject/{{ $seeker->id }}">reject</a>
+                                <a class="pending button" href="/intreview/{{ $seeker->id }}">interview</a>
+                            </div>
+
+                    </tr>
+                    </td>
+                @endforeach
+            </tbody>
+        </table>
+        
+        @if ($matches == 0)
+        <div>
+                <form class="form-box content-box" action='/viewApplications/{{ $id }}' method="post">
+                    @csrf
+                    <h2> Find best seeker matches for this position!</h2>
+                    <input type="submit" value="Best Matches">
+                </form>
+        </div>
         @endif
-    </div>
-    <div class="container">
-        @foreach ($seekers as $seeker)
-            <br>
-            <a href="/seekers/details/{{ $seeker->id }}">{{ $seeker->id }}</a>&nbsp;
-            <a href="/reject/{{ $seeker->id }}">reject</a>&nbsp;
-            <a href="/intreview/{{ $seeker->id }}">interview</a>&nbsp;
 
-        @endforeach
     </div>
-
 </body>
+
 </html>

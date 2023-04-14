@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("employerId");
             $table->foreign("employerId")->references("id")->on("employers");
             $table->string("title");
-            $table->string("description");
+            $table->text("description");
             $table->string("location");
             $table->unsignedDouble("salary");
             $table->integer("applied");
@@ -29,7 +29,6 @@ return new class extends Migration
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("type");
             $table->timestamps();
         });
 
@@ -39,7 +38,6 @@ return new class extends Migration
             $table->foreign("jobId")->references("id")->on("job_posts");
             $table->unsignedBigInteger("skillId");
             $table->foreign("skillId")->references("id")->on("skills");
-            $table->string("importance");
             $table->timestamps();
         });
     }

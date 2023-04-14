@@ -7,7 +7,7 @@
 </head>
 
 <body>
-    <div class="login-box login-box-abs">
+    <div class="content-box form-box login-box">
         <h2>Register Page</h2>
         <form action="{{ route('regesterSeeker') }}" method="POST">
             @csrf

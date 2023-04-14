@@ -19,6 +19,7 @@ use App\Http\Controllers\SeekerController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::middleware(["guest", "throttle:20,1"])->group(function () {
     Route::get('/', [loginController::class, 'index'])->name("login");
     Route::post('/', [loginController::class, 'authenticate'])->name("authentication");
@@ -38,39 +39,37 @@ Route::middleware(["auth"])->group(function () {
 
     //the following routes will be used to nevigate the pages of the seeker
     Route::get('/seeker.home', [SeekerController::class, 'home'])->name("seekerhome");
-    Route::post('/seeker.search',[SeekerController::class, 'search'] )->name('searchJobs');
+    Route::post('/seeker.home', [SeekerController::class, 'search'])->name('searchJobs');
     Route::get('/seeker.profile/{id?}', [SeekerController::class, 'profile'])->name("seekerprofile");
-    Route::get('/seeker.edit', [SeekerController::class , 'edit'])->name('profileEdit');
+    Route::get('/seeker.edit', [SeekerController::class, 'edit'])->name('profileEdit');
     Route::post('/seeker.edit', [SeekerController::class, 'editSave'])->name("seekeredit");
     Route::get('/seeker.editSkills', [SeekerController::class, 'addSkillForm'])->name("addSkillForm");
     Route::post('/seeker.editSkills', [SeekerController::class, 'addSkill'])->name("addSkill");
 
-
-
     Route::get('/employer', [employerController::class, "index2"]);
     Route::get('/jobPosts', [JobController::class, "index"]);
-    Route::get('/jobRequests',[ApplicationController::class,"jobRequestView"]);
+    Route::get('/jobRequests', [ApplicationController::class, "jobRequestView"]);
 
     Route::get('/addJob', [JobController::class, "index2"]);
     Route::post('/addJob', [JobController::class, 'create'])->name("createJob");
-    Route::get('/jobPosts/details/{id}', [JobController::class, "show"]);
+    Route::get('/jobPosts/details/{id}', [JobController::class, "show"])->name("jobDetails");
     Route::get('/addJob/edit/{id}', [JobController::class, "index3"]);
     Route::get('/delete/{id}', [JobController::class, "delete"]);
     Route::post('/addJob/edit/{id}', [JobController::class, 'save'])->name("save");
 
 
-    Route::get('/viewApplications/{id}', [ApplicationController::class,"listSeekers" ]);
-    Route::post('/viewApplications/{id}', [ApplicationController::class,"BestMatches" ]);
+    Route::get('/viewApplications/{id}', [ApplicationController::class, "listSeekers"]);
+    Route::post('/viewApplications/{id}', [ApplicationController::class, "BestMatches"]);
 
 
     Route::get('/employer/profile/{id}', [employerController::class, 'ViewProfile']);
     Route::post('/employer/profile/edit/{id}', [employerController::class, 'EditProfile']);
     Route::post('/employer/profile/{id}', [employerController::class, 'SaveProfile']);
 
-    Route::post('/activity',[adminController::class,'showUserActivity']);
-    Route::get("/activity",function(){
-        return view("userActivity",["events"=>null]);
+    Route::post('/activity', [adminController::class, 'showUserActivity']);
+    Route::get("/activity", function () {
+        return view("userActivity", ["events" => null]);
     });
-    Route::post("/Employernotifications",[employerController::class,"EmployerNotifications"]);
-    Route::post("/SeekerNotifications",[SeekerController::class,"SeekerNotifications"]);
+    Route::get("/Employernotifications", [employerController::class, "EmployerNotifications"]);
+    Route::post("/SeekerNotifications", [SeekerController::class, "SeekerNotifications"]);
 });

@@ -21,22 +21,19 @@
                 <a href="/seeker.home"><i class="fa fa-home"></i> </a>
                 <span class="tooltip">Home</span>
             </li>
-            <li>
-                <a href="/seeker.profile"><i class="fa fa-user"></i> </a>
-                <span class="tooltip">Profile Details</span>
-            </li>
+            
+                <li>
+            
+            <a href="/seeker.profile/@isset($seeker){{ $seeker->id }}@endisset"><i class="fa fa-user"></i> </a>
+                    <span class="tooltip">Profile Details</span>
+                </li>
             <li>
                 <a href="/logout"><i class="fa fa-sign-out"></i> </a>
                 <span class="tooltip">Logout</span>
             </li>
         </ul>
-
-
     </nav>
-
-
     @yield('content')
-
 </body>
 
 </html>

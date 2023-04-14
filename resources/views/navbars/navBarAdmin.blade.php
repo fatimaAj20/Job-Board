@@ -16,7 +16,7 @@
         <h1>Job Board</h1>
         <ul>
             <li>
-                <a href="/employer"><i class="fa fa-home"></i> </a>
+                <a href="/admin"><i class="fa fa-home"></i> </a>
                 <span class="tooltip">Home</span>
             </li>
             <li>

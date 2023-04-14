@@ -7,14 +7,44 @@
     line-height: 1;
 }
 
-html {
+html,
+body {
+    margin: 0;
+    height: 100vh;
+    min-height: 100vh;
+}
+
+html,
+body {
     height: 100%;
 }
 
 body {
     background: linear-gradient(45deg, #c0f3f1, #e5cbf6);
-    overflow: hidden;
+    margin: 0;
 }
+
+.flex-container {
+    margin: auto;
+    display: flex;
+    flex-flow: row nowrap;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:  space-around;
+    align-content:  center;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.registerationBox{
+    min-height: 500px;
+    min-width: 500px;
+}
+
+h1{
+    margin: 10px;
+}
+
 
 .sidebar-navigation {
     display: inline-block;
@@ -32,8 +62,8 @@ body {
 }
 
 .sidebar-navigation h1,
-h3,
-a {
+.sidebar-navigation h3,
+.sidebar-navigation a {
     text-align: center;
     color: white;
     margin-top: 30px;
@@ -95,28 +125,121 @@ a {
     color: #98d7ec;
 }
 
-.container {
+.content-box {
+    color: #fff;
+    background: linear-gradient(45deg, #2dc8c3, #b74bff);
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(161, 19, 197, 0.6);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.login-box {
     position: absolute;
-    top: 10%;
+    margin: 0;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -10%);
+    width: 400px;
+    transform: translate(-50%, -50%);
 }
 
-.container2 {
-    margin-top: 5%;
+.searchbox {
+    min-width: 350px;
+    margin: 30px;
 }
 
-
-
-
-.container h1 {
-    color: #22252e;
+.form-box h2,
+.form-box h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
 }
 
-.container a {
-    color: #22252e;
+.form-box .user-box {
+    position: relative;
 }
 
+.form-box .user-box input,
+.form-box .user-box select,
+.form-box .user-box textarea {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+.form-box select option {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border: 1px solid;
+}
+
+.form-box textarea::placeholder {
+    color: white;
+}
+
+.form-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.form-box .user-box input:focus~label,
+.form-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.form-box .user-box input:focus~label,
+.form-box .user-box input:valid~label {
+    top: -20px;
+    left: 0;
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.form-box input[type="submit"] {
+    background-color: #ba5ec8;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+    width: 150px;
+}
+
+.form-box input[type="submit"]:hover {
+    background-color: #8b45a0;
+}
+
+.form-box a,
+.form-bo p {
+    margin-top: 10px;
+    color: #ffffff;
+    ;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-box a {
+    display: block;
+    text-align: left;
+}
 
 .cards {
     margin-top: 150px;
@@ -133,17 +256,6 @@ a {
     text-align: center;
     width: 200px;
     transition: 0.5s;
-}
-
-.job-details{
-    margin: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border: 1px solid;
-}
-
-.job-details h4{
-    font-size: x-large;
 }
 
 .card p {
@@ -172,14 +284,38 @@ a {
     height: 75%;
 }
 
-
 .card p {
     margin: 10px;
 }
 
+.job-details {
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border: 1px solid;
+    width: 50%;
+}
+
+.job-details h4 {
+    font-size: x-large;
+    margin-bottom: 10px;
+    
+    margin-top: 30px;
+}
+
+.job-details hr{
+    margin: auto;
+    width: 500px;
+    align-self: center;
+    text-align: center;
+    margin-top: 50px;
+    display: block; 
+    height: 1px;
+    border: 0; border-top: 1px solid #682773;
+}
+
 table {
     float: right;
-    margin-top: 50px;
     width: 800px;
     border-collapse: collapse;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -219,7 +355,6 @@ a {
     text-decoration: none;
 }
 
-
 .center {
     text-align: center;
 }
@@ -249,132 +384,12 @@ a {
     background-color: #FFA07A;
 }
 
-.login-box {
-    color: #fff;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 5%;
-    padding: 40px;
-    background: linear-gradient(45deg, #2dc8c3, #b74bff);
-    box-sizing: border-box;
-    box-shadow: 0 15px 25px rgba(161, 19, 197, 0.6);
-    border-radius: 10px;
-}
-
-.searchbox{
-    width: 300px;
-    margin-right: 40px;
-    float: right;
-}
-
-.login-box-abs {
-    position: absolute;
-    margin: 0;
-    top: 50%;
-    left: 50%;
-    width: 400px;
-    transform: translate(-50%, -50%);
-}
-
-
-
-.login-box h2,
-h1 {
-    margin: 0 0 30px;
-    padding: 0;
-    color: #fff;
-    text-align: center;
-}
-
-.login-box .user-box {
-    position: relative;
-}
-
-.login-box .user-box input,
-select,
-textarea {
-    width: 100%;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    margin-bottom: 30px;
-    border: none;
-    border-bottom: 1px solid #fff;
-    outline: none;
-    background: transparent;
-}
-
-.login-box select option {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    border: 1px solid;
-}
-
-.login-box textarea::placeholder {
-    color: white;
-}
-
-.login-box .user-box label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
-}
-
-.login-box .user-box input:focus~label,
-.login-box .user-box input:valid~label {
-    top: -20px;
-    left: 0;
-    color: #ffffff;
-    font-size: 12px;
-}
-
-.login-box .user-box input:focus~label,
-.login-box .user-box input:valid~label {
-    top: -20px;
-    left: 0;
-    color: #ffffff;
-    font-size: 12px;
-}
-
-.login-box input[type="submit"] {
-    background-color: #ba5ec8;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.login-box input[type="submit"]:hover {
-    background-color: #8b45a0;
-}
-
-.login-box a,
-p {
-    margin-top: 10px;
-    color: #ffffff;
-    ;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.login-box a {
-    display: block;
-    text-align: left;
-}
-
 .error {
     color: rgb(149, 61, 61);
     margin-bottom: 10px;
     font-weight: bold;
 }
+
 
 .job-post {
     border: 1px solid #ddd;
@@ -394,7 +409,6 @@ p {
     color: #666;
 }
 
-/* Profile picture and name */
 .profile-picture {
     width: 200px;
     height: 200px;
@@ -408,7 +422,6 @@ p {
     margin-bottom: 10px;
 }
 
-/* Contact information */
 .contact-info {
     margin-bottom: 20px;
 }
@@ -423,7 +436,6 @@ p {
     margin-bottom: 5px;
 }
 
-/* About section */
 .about {
     margin-bottom: 20px;
 }
@@ -438,7 +450,6 @@ p {
     margin-bottom: 5px;
 }
 
-/* Skills section */
 .skills {
     margin-bottom: 20px;
 }
@@ -459,7 +470,6 @@ p {
     margin-bottom: 5px;
 }
 
-/* Download resume button */
 .resume-button {
     display: inline-block;
     padding: 10px 20px;
@@ -474,7 +484,6 @@ p {
     background-color: #2980b9;
 }
 
-/* Edit profile button */
 .edit-profile-button {
     display: inline-block;
     padding: 10px 20px;
@@ -528,3 +537,11 @@ p {
     cursor: pointer;
     border: solid 1px #BA68C8
 }
+
+.purple-button{
+    background-color: #BA68C8;
+    width: 100px;
+}
+
+
+

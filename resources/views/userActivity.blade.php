@@ -12,23 +12,49 @@
 
 <body class="antialiased">
     @include('navbars.navBar')
-    <div class="container">
-        <form action="/activity" method="post">
-            @csrf
-            check user activity:
-            <input type="text" id="id" name="userId" >
-			<label for="id"> Enter user Id</label>
-            <input type="submit" name="done" value="Done">
-        </form>
-        @if(!is_null($events))
-        <table>
-            <tr>
-                @foreach($events as $event)
-                <td>{{ $event->event_type }}</td>
-                @endforeach
-            </tr>
-        </table>
-        @endif
+    <div class="flex-container">
+        <div class="flex-container" style="flex:1">
+            <table>
+                <thead>
+                    <th colspan="3">
+                        Event Type
+                    </th>
+
+                    <th>
+                        Date of Action
+                    </th>
+                </thead>
+                <tr>
+                    @if (!is_null($events))
+                        <tbody>
+                            @foreach ($events as $event)
+                                <tr>
+                                    <td>
+                                        {{ $event->event_type }}
+                                    </td>
+                                    <td>
+                                        {{ $event->created_at }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    @endif
+
+            </table>
+        </div>
+        <div class="flex-container" style="margin: 50px">
+            <form class="content-box form-box searchbox" action="/activity" method="post">
+                @csrf
+
+                <h2> Search Box</h2>
+                <div class="user-box">
+                    <input type="text" id="id" name="userId">
+                    <label for="id"> Enter user Id</label>
+                </div>
+                <input type="submit" name="search" value="Search">
+            </form>
+        </div>
     </div>
 </body>
+
 </html>

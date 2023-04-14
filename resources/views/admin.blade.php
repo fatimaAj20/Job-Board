@@ -13,47 +13,62 @@
 
 <body class="antialiased">
     @include('navbars.navBar')
-    <div class="container">
+    <div class="flex-container">
         <div class="center" style="margin-bottom: 20px">
             <a class="button rejected" href='/admin?filter=0'>Rejected</a>
             <a class="button pending" href='/admin?filter=1'>Pending</a>
             <a class="button approved" href='/admin?filter=2'>Approved</a>
         </div>
+    </div>
+    <div class="flex-container">
         <table>
             <thead>
+
                 <tr>
-                    <th colspan="3">Employers Registration Requests</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($requests as $request)
-                    <tr>
-                        <td>Requests
-                             {{-- <a
-                                href="/admin/employers/{{ $request->employerId }}">{{ $names[$request->employerId] }}</a> --}}
-                        </td>
+                    <th colspan="2">Employer Name</th>
+                    <th colspan="1">Request Date</th>
+                    @foreach ($requests as $request)
                         @if ($request->status == 1)
-                            <td>
-                                <form method="post" action="{{ route('reject', $request->id) }}">
-                                    {{ csrf_field() }}
-                                    <input class="rejected button" type="submit" name="reject" value="reject">
-                                </form>
-
-                            </td>
-
-                            <td>
-                                <form method="post" action="{{ route('approve', $request->id) }}">
-                                    {{ csrf_field() }}
-                                    <input class="approved button" type="submit" name="approve" value="approve">
-                                </form>
-                            </td>
-                        @endif
-                    </tr>
+                            <th colspan="2">Action</th>
+                        @break
+                    @endif
                 @endforeach
-            </tbody>
-        </table>
+            </tr>
 
-    </div>
+
+        </thead>
+        <tbody>
+            @foreach ($requests as $request)
+                <tr>
+                    <td colspan="2">
+                        <a style="color: purple"
+                            href="/admin/employers/{{ $request->employerId }}">{{ $names[$request->id] }}</a>
+                    </td>
+                    <td colspan="1">
+                        {{ $request->created_at }}
+                    </td>
+                    @if ($request->status == 1)
+                        <td>
+                            <form method="post" action="{{ route('reject', $request->id) }}">
+                                {{ csrf_field() }}
+                                <input class="rejected button" type="submit" name="reject" value="reject">
+                            </form>
+
+                        </td>
+
+                        <td>
+                            <form method="post" action="{{ route('approve', $request->id) }}">
+                                {{ csrf_field() }}
+                                <input class="approved button" type="submit" name="approve" value="approve">
+                            </form>
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+</div>
 
 </body>
 

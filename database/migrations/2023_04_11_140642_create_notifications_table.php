@@ -16,10 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger("userId");
             $table->foreign("userId")->references("id")->on("users");
             $table->string("message");
-            $table->integer("isRead");
-    
+            $table->timestamps();
         });
-
     }
 
     /**

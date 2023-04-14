@@ -18,11 +18,10 @@ return new class extends Migration
             $table->foreign("jobId")->references("id")->on("job_posts");
             $table->unsignedBigInteger("seekerId");
             $table->foreign("seekerId")->references("id")->on("seekers");
-            $table->string("resume");
+            $table->string("resume")->nullable();
             $table->string("status");
+            $table->timestamps();
         });
-
-
     }
 
     /**

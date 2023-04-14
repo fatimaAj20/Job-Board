@@ -10,27 +10,25 @@
 </head>
 
 <body class="antialiased">
-
     @include('navbars.navBar', ['employer' => $employer])
-    <div class="container">
-        <h1> Welcome {{ Auth::user()->name }}!</h1>
-
+    <div class="flex-container">
+        <h1 style="color: #22252e"> Welcome {{ Auth::user()->name }}!</h1>
+    
+    </div>
+    <div class="flex-container">
         <div class="cards">
-
             <div class="card" onclick="location.href='/jobPosts'">
                 <p>
                     Job Posts
                 </p>
-                <img src="{{ asset('images/job_posting.webp') }}" alt="Card image">
-            </div>
-
-            <div class="card" onclick="location.href='/jobRequests'">
-                <p>
-                    Job Requests
-                </p>
                 <img src="{{ asset('images/job_application.webp') }}" alt="Card image">
             </div>
-
+            <div class="card" onclick="location.href='/Employernotifications'">
+                <p>
+                    Job Notifications
+                </p>
+                <img src="{{ asset('images/bell.jpg') }}" alt="Card image">
+            </div>
             <div class="card" onclick="location.href='/addJob'">
                 <p>
                     Add Job
@@ -39,10 +37,7 @@
             </div>
         </div>
     </div>
-    <form action="/Employernotifications" method="post">
-        @csrf
-        <input type="submit" name="submit" value="notifications">
-    </form>
+
 </body>
 
 </html>

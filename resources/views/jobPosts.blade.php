@@ -12,11 +12,15 @@
 
 <body class="antialiased">
     @include('navbars.navBar')
-    <div class="container">
-        <div class="center" style="margin-bottom: 20px">
-            <a class="button rejected" href='/jobPosts?filter=1'>Occupied</a>
-            <a class="button approved" href='/jobPosts?filter=0'>Vacant</a>
-        </div>
+
+    <div class="flex-container">
+    <div class="center" style="margin-bottom: 20px">
+        <a class="button rejected" href='/jobPosts?filter=1'>Occupied</a>
+        <a class="button approved" href='/jobPosts?filter=0'>Vacant</a>
+    </div>
+    </div>
+    <div class="flex-container">
+
         <table>
             <thead>
                 <tr>

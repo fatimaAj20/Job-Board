@@ -8,7 +8,7 @@
 
 <body>
 
-    <div class="login-box login-box-abs">
+    <div class="content-box login-box form-box">
         <form action="{{ route('authentication') }}" method="POST">
             <h1>Login Page</h1>
             @csrf
