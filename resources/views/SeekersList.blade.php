@@ -18,8 +18,8 @@
         <h2 style="color:purple">The top candidates for this position are the following:</h2>
     </div>
     @endif
-    <div class="flex-container">
-        <table>
+    <div class="flex-container" >
+        <table style="width:30%">
             <thead>
                 <tr>
                     <th>
@@ -38,8 +38,14 @@
                         <td><a href="/seeker.profile/{{ $seeker->id }}">{{$names[$seeker->id]}}</a></td>
                         <td colspan="2">
                             <div class="flex-container" style="margin: 0; padding:0">
+                                @if($matches ==0)
                                 <a class="rejected button" href="/reject/{{ $seeker->id }}?jobId={{$id}}">reject</a>
                                 <a class="pending button" href="/intreview/{{ $seeker->id }}?jobId={{$id}}">interview</a>
+                                @else
+                                
+                                <a class="pending button" href="/reject/{{ $seeker->id }}?jobId={{$id}}">Send Email</a>
+                                @endif
+                                
                             </div>
 
                     </tr>
@@ -50,7 +56,7 @@
         
         @if ($matches == 0)
         <div>
-                <form class="form-box content-box" action='/viewApplications/{{ $id }}' method="post">
+                <form style="width:250px" class="form-box content-box" action='/viewApplications/{{ $id }}' method="post">
                     @csrf
                     <h2> Find best seeker matches for this position!</h2>
                     <input type="submit" value="Best Matches">

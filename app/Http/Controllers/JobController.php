@@ -14,9 +14,10 @@ class JobController extends Controller
     function index(Request $request)
     {
         $filter = $request->get("filter", 0);
-        $request = jobPost::where("vacant", $filter)->get();
+        
         $user = Auth::user();
         $employer = employer::where("userId", $user->id)->get();
+        $request = jobPost::where("vacant", $filter)->where("employerId", $employer[0]->id)->get();
         return view("jobPosts", ["requests" => $request, "employer" => $employer[0]]);
     }
     function index2()

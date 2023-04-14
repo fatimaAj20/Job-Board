@@ -9,7 +9,7 @@
 <body>
 	@include('navbars.navBar')
 	<div class="flex-container">
-		<div class="login-box content-box form-box">
+		<div class="content-box form-box">
 			<h2>Job to Post</h2>
 			@if (is_null($job))
 				<form action="{{ route('createJob') }}" method="POST">

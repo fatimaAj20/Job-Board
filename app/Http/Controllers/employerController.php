@@ -19,7 +19,7 @@ class employerController extends Controller
     function index2(){
         $user=Auth::user();
         $employer=employer::where("userId",$user->id)->get();
-        return view("Employer",["employer"=>$employer[0]]);
+        return view("Employer",["employer"=>$employer[0], "view"=>0]);
     }
 
     function ViewProfile($id){
@@ -42,7 +42,9 @@ class employerController extends Controller
         if(!is_null($Request->logo)){
             $employer->logo=$Request->input('logo');
         }
-        $employer->lebanonCreftificateOfIncorporation=$Request->input('lebanonCreftificateOfIncorporation');
+        if($Request->input('lebanonCreftificateOfIncorporation')!=null){
+            $employer->lebanonCreftificateOfIncorporation=$Request->input('lebanonCreftificateOfIncorporation');
+        }
         $employer->registrationNumber=$Request->input('registrationNumber');
         $employer->save();
         return redirect("/employer/profile/".$employer->id);

@@ -84,7 +84,7 @@
         @endif
     </div>
 
-    <div class="flex-container form-box" style="margin-top:100px">
+    <div class="flex-container form-box" style="margin-top:10px">
         <input type="submit" value="Register">
         </form>
     </div>

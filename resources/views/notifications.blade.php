@@ -23,7 +23,7 @@
                 @if (!is_null($notifications))
                     @foreach ($notifications as $notification)
                         <tr>
-                            <td>{{ $notification->message }}</td>
+                            <td colspan="4">{{ $notification->message }}</td>
                             <td>{{ $notification->created_at }}</td>
                         </tr>
                     @endforeach

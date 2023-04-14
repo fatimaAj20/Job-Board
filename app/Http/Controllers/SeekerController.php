@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\notifications;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use App\Models\jobPost;
 use App\Models\seeker;
@@ -18,14 +19,8 @@ class SeekerController extends Controller
     {
         $user = Auth::user();
         $seeker = Seeker::where('userId', $user->id)->first();
-        $seeker_id=
-        $job = DB::select('SELECT * FROM get_job_posts_by_location_and_skills(?)', [$seeker->id]);
-
-        // Convert stdClass objects to associative arrays
-        $job = array_map(function($job) {
-            return (array) $job;
-        }, $job);
-
+        $jobs = DB::statement('CALL `get_job_posts_by_location_and_skills`(?);', [$seeker->id]);
+        
 
         return view('seeker.home', ['jobs' => $jobs, 'seeker'=>$seeker]);
     }
@@ -62,9 +57,10 @@ class SeekerController extends Controller
         // this function will get the array of skills for the specific user
         //then it will add them to the user array and then pass it to the profile
         //get user
-        $user = Auth::user();
 
         $seeker = Seeker::find($seekerId);
+        $user = User::find($seeker->userId);
+
         //get his skills
         $userSkills = DB::table('seeker_skills')
             ->join('skills', 'seeker_skills.skillId', '=', 'skills.id')
@@ -200,60 +196,6 @@ class SeekerController extends Controller
         $request->validate([
             'skill' => ['required'],
         ]);
-
-<<<<<<< HEAD
-}
-// this function is to get all the skills found in the data base
-public function addSkillForm()
-{
-    $user=Auth::user();
-    //get his skills
-    $userSkills = DB::table('seeker_skills')
-    ->join('skills', 'seeker_skills.skill_id', '=', 'skills.id')
-    ->where('seeker_skills.user_id', '=', $user->id)
-    ->select('skills.name')
-    ->get();
-
-      $skillsArray = array();
-
-      foreach ($userSkills as $skill) {
-      array_push($skillsArray, $skill->name);
-      }
-      //add to the user array and pass it on t the view to use it
-
-    $user['skills']= $skillsArray;
-
-    $skills = skill::all();
-    return view('seeker/addSkill', ['skills'=>$skills , 'user'=>$user]);
-}
-
-// this function is used to add skills to the profile of a user
-public function addSkill(Request $request) {
-    $request->validate([
-        'skill'=>['required'],
-    ]);
-    $user_id = Auth::id(); // Get the current user's ID
-    $skill_id = $request->skill; // Get the selected skill's ID from the request
-
-    // Add the skill to the user's profile
-    DB::table('seeker_skills')->insert(
-       ['user_id' => $user_id, 'skill_id' => $skill_id]
-    );
-
-    // Redirect back to the edit skills  page
-    return redirect('/seeker.editSkills')->with('success', 'Skill added successfully!');
- }
-
-
-
-function SeekerNotifications(Request $request){
-    $user=Auth::user();
-    $notifications=notifications::where("userId",$user->id)->get();
-    return view("notifications",["notifications"=>$notifications]);
-
-}
-
-=======
         $user_id = Auth::id(); // Get the current user's ID
         $skill_id = $request->skill; // Get the selected skill's ID from the request
         $seeker = Seeker::where('userId', $user_id)->first();
@@ -278,5 +220,4 @@ function SeekerNotifications(Request $request){
         $notifications = notifications::where("userId", $user->id)->get();
         return view("notifications", ["notifications" => $notifications, 'seeker' =>$seeker]);
     }
->>>>>>> a51a3cde5ab464b0b7970b35dcd89584ec8948f9
 }

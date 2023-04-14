@@ -14,7 +14,7 @@
     @include('navbars.navBar')
     <div class="flex-container">
         <div class="flex-container" style="flex:1">
-            <table>
+            <table style="width:400px">
                 <thead>
                     <th colspan="3">
                         Event Type
@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($events as $event)
                                 <tr>
-                                    <td>
+                                    <td colspan="3">
                                         {{ $event->event_type }}
                                     </td>
                                     <td>

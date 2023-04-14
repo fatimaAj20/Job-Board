@@ -3,11 +3,14 @@
     <div class="flex-container">
         <div class="flex-container">
             <div class="form-box content-box" style="width:800px">
-                <img src="{{ asset($user->profile_picture) }}" alt="Profile Picture">
+             
                 <h2 class="profile-name">{{ $user->name }}</h2>
+                <img style="float: right" height="150px" width="150px" src="{{ asset($user->profile_picture) }}" alt="Profile Picture">
+
                 <form method="POST" action="{{ route('profileEdit') }}" enctype="multipart/form-data">
                     @csrf
-                    <div class="user-box">
+                    <div class="user-box" style="clear:right">
+                        <br >
                         <label for="name">Name:</label> <br>
 
                         <input disabled type="text" id="name" name="name" value="{{ $user->name }}">
