@@ -240,7 +240,7 @@ function SeekerNotifications(Request $request){
     $user=Auth::user();
     $notifications=notifications::where("userId",$user->id)->get();
     return view("notifications",["notifications"=>$notifications]);
-    
+
 }
 
 }
