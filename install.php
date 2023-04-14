@@ -53,7 +53,9 @@ exec('composer install ', $output);
 
 //make env file
 exec('cp .env.example .env ', $output);
+// set the key
 
+exec(' php artisan key:generate', $output);
 // link the storage to the public directory
 exec('php artisan storage:link', $output);
 // Start the server
