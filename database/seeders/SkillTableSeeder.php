@@ -14,26 +14,26 @@ class SkillTableSeeder extends Seeder
     public function run(): void
     {
         $skills = [
-            ['name' => 'Java', 'type' => 'technical'],
-            ['name' => 'Python', 'type' => 'technical'],
-            ['name' => 'C++', 'type' => 'technical'],
-            ['name' => 'SQL', 'type' => 'technical'],
-            ['name' => 'JavaScript', 'type' => 'technical'],
-            ['name' => 'HTML', 'type' => 'technical'],
-            ['name' => 'CSS', 'type' => 'technical'],
-            ['name' => 'Git', 'type' => 'technical'],
-            ['name' => 'Linux', 'type' => 'technical'],
-            ['name' => 'Data Structures', 'type' => 'technical'],
-            ['name' => 'Algorithms', 'type' => 'technical'],
-            ['name' => 'Problem Solving', 'type' => 'soft'],
-            ['name' => 'Communication', 'type' => 'soft'],
-            ['name' => 'Collaboration', 'type' => 'soft'],
-            ['name' => 'Leadership', 'type' => 'soft'],
-            ['name' => 'Time Management', 'type' => 'soft'],
-            ['name' => 'Adaptability', 'type' => 'soft'],
-            ['name' => 'Creativity', 'type' => 'soft'],
-            ['name' => 'Critical Thinking', 'type' => 'soft'],
-            ['name' => 'Problem Sensitivity', 'type' => 'soft']
+            ['name' => 'Java'],
+            ['name' => 'Python'],
+            ['name' => 'C++'],
+            ['name' => 'SQL'],
+            ['name' => 'JavaScript'],
+            ['name' => 'HTML'],
+            ['name' => 'CSS'],
+            ['name' => 'Git'],
+            ['name' => 'Linux'],
+            ['name' => 'Data Structures'],
+            ['name' => 'Algorithms'],
+            ['name' => 'Problem Solving'],
+            ['name' => 'Communication'],
+            ['name' => 'Collaboration'],
+            ['name' => 'Leadership'],
+            ['name' => 'Time Management'],
+            ['name' => 'Adaptability'],
+            ['name' => 'Creativity'],
+            ['name' => 'Critical Thinking'],
+            ['name' => 'Problem Sensitivity']
         ];
 
         DB::table('skills')->insert($skills);

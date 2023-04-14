@@ -35,11 +35,11 @@
             <tbody>
                 @foreach ($seekers as $seeker)
                     <tr>
-                        <td><a href="/seeker.profile/{{ $seeker->id }}">{{ $seeker->name }}</a></td>
+                        <td><a href="/seeker.profile/{{ $seeker->id }}">{{$names[$seeker->id]}}</a></td>
                         <td colspan="2">
                             <div class="flex-container" style="margin: 0; padding:0">
-                                <a class="rejected button" href="/reject/{{ $seeker->id }}">reject</a>
-                                <a class="pending button" href="/intreview/{{ $seeker->id }}">interview</a>
+                                <a class="rejected button" href="/reject/{{ $seeker->id }}?jobId={{$id}}">reject</a>
+                                <a class="pending button" href="/intreview/{{ $seeker->id }}?jobId={{$id}}">interview</a>
                             </div>
 
                     </tr>

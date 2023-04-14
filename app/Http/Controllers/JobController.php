@@ -70,7 +70,7 @@ class JobController extends Controller
                 $reqSkills = [
                     'jobId' => $job->id,
                     'skillId' => $id,
-                    'importance' => "",
+
                 ];
                 requiredSkills::create($reqSkills);
             }
@@ -121,7 +121,6 @@ class JobController extends Controller
             $reqSkills = [
                 'jobId' => $job->id,
                 'skillId' => $id,
-                'importance' => "",
             ];
             requiredSkills::create($reqSkills);
         }
@@ -129,11 +128,5 @@ class JobController extends Controller
         return redirect("/jobPosts/details/" . $job->id);
     }
 
-    //function to give sugestions of  posts to a specific seeker this will be called in the home of the seeker
-    //once logged in
-    function  matching($seeker)
-    {
-        // should implement a way to make the jobs list
-        return $jobs;
-    }
+    
 }

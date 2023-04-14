@@ -11,6 +11,5 @@ class requiredSkills extends Model
     protected $fillable = [
         'jobId',
         'skillId',
-        'importance',
     ];
 }

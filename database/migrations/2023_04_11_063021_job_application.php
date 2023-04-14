@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger("seekerId");
             $table->foreign("seekerId")->references("id")->on("seekers");
             $table->string("resume")->nullable();
-            $table->string("status");
+            $table->integer("status");
             $table->timestamps();
         });
     }

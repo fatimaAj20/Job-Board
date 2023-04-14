@@ -60,6 +60,9 @@ Route::middleware(["auth"])->group(function () {
 
     Route::get('/viewApplications/{id}', [ApplicationController::class, "listSeekers"]);
     Route::post('/viewApplications/{id}', [ApplicationController::class, "BestMatches"]);
+    Route::get('/reject/{id}', [ApplicationController::class, "rejectApplication"]);
+    Route::get('/intreview/{id}', [ApplicationController::class, "intreview"]);
+
 
 
     Route::get('/employer/profile/{id}', [employerController::class, 'ViewProfile']);
