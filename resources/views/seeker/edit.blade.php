@@ -3,7 +3,7 @@
     <div class="flex-container">
 
         <div class="flex-container">
-            <div class="form-box content-box" style="width:800px">
+            <div class="form-box content-box" style="width:600px">
                 <h1>Profile Details</h1>
                 <form method="POST" action="{{ route('seekeredit') }}" enctype="multipart/form-data">
                     @csrf

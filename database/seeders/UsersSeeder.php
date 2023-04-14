@@ -35,16 +35,16 @@ class UsersSeeder extends Seeder
         ];
 
         $seekers =[
-            ['id'=>1, "userId" => 2, 'birthday'=>'2002-03-01', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 1'],
-            ['id'=>2, "userId" => 3, 'birthday'=>'2002-03-02', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 2'],
-            ['id'=>3, "userId" => 4, 'birthday'=>'2002-03-03', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 3'],
-            ['id'=>4, "userId" => 5, 'birthday'=>'2002-03-04', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 4'],
-            ['id'=>5, "userId" => 6, 'birthday'=>'2002-03-05', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 5'],
-            ['id'=>6, "userId" => 7, 'birthday'=>'2002-03-06', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 6'],
-            ['id'=>7, "userId" => 8, 'birthday'=>'2002-03-07', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 7'],
-            ['id'=>8, "userId" => 9, 'birthday'=>'2002-03-08', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 8'],
-            ['id'=>9, "userId" => 10, 'birthday'=>'2002-03-09', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 9'],
-            ['id'=>10, "userId" => 11, 'birthday'=>'2002-03-10', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/resumes/resume.txt', 'about'=>'about section for seeker1 10'],
+            ['id'=>1, "userId" => 2, 'birthday'=>'2002-03-01', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 1'],
+            ['id'=>2, "userId" => 3, 'birthday'=>'2002-03-02', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 2'],
+            ['id'=>3, "userId" => 4, 'birthday'=>'2002-03-03', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 3'],
+            ['id'=>4, "userId" => 5, 'birthday'=>'2002-03-04', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 4'],
+            ['id'=>5, "userId" => 6, 'birthday'=>'2002-03-05', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 5'],
+            ['id'=>6, "userId" => 7, 'birthday'=>'2002-03-06', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 6'],
+            ['id'=>7, "userId" => 8, 'birthday'=>'2002-03-07', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 7'],
+            ['id'=>8, "userId" => 9, 'birthday'=>'2002-03-08', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 8'],
+            ['id'=>9, "userId" => 10, 'birthday'=>'2002-03-09', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 9'],
+            ['id'=>10, "userId" => 11, 'birthday'=>'2002-03-10', 'location'=>'beirut', 'profile_picture'=>'/storage/public/profile_pictures/1.png', 'resume'=> '/storage/public/resumes/resume.txt', 'about'=>'about section for seeker1 10'],
         ];
 
         $employers = [

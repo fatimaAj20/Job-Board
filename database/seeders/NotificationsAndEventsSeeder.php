@@ -32,6 +32,9 @@ class NotificationsAndEventsSeeder extends Seeder
             ['userId'=>12, 'message' => 'New job application recieved','created_at' =>  '2023-03-01'],
             ['userId'=>12, 'message' => 'New job application recieved','created_at' =>  '2023-03-04'],
             ['userId'=>12, 'message' => 'New job application recieved','created_at' =>  '2023-03-05'],
+            ['userId'=>2, 'message' => 'your application is rejected','created_at' =>  '2023-03-01'],
+            ['userId'=>2, 'message' => 'your application is accepted','created_at' =>  '2023-03-04'],
+            ['userId'=>2, 'message' => 'your application is rejected','created_at' =>  '2023-03-05'],
         ];
         DB::table('event_summaries')->insert($events);
         DB::table('employer_registration_requests')->insert($reg_requests);

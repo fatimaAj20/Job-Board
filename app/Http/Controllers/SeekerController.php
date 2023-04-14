@@ -19,10 +19,8 @@ class SeekerController extends Controller
     {
         $user = Auth::user();
         $seeker = Seeker::where('userId', $user->id)->first();
-        $jobs = DB::statement('CALL `get_job_posts_by_location_and_skills`(?);', [$seeker->id]);
-        
-
-        return view('seeker.home', ['jobs' => $jobs, 'seeker'=>$seeker]);
+        // $jobs = DB::statement('CALL `get_job_posts_by_location_and_skills`(?);', [$seeker->id]);
+        return view('seeker.home', [/*'jobs' => $jobs,*/ 'seeker'=>$seeker]);
     }
 
     //when searching fror a specific job using the location category or title

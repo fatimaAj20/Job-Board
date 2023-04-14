@@ -8,14 +8,15 @@
 
 <div class="flex-container">
     
-    <div class="flex-container" style="flex:1">
-        <table>
+    <div class="flex-container" style="flex:1; margin-top:0">
+        <table style="width:500px">
             <thead>
                 <tr>
                     <th>Job Title</th>
                     <th>Job Location</th>
                 </tr>
             </thead>
+            @isset($jobs)
             <tbody>
                 @foreach ($jobs as $job)
                     <tr>
@@ -24,6 +25,8 @@
                     </tr>
                 @endforeach
             </tbody>
+            @endisset
+
         </table>
     </div>
     <form class="content-box searchbox form-box" method='post' action="{{ route('searchJobs') }}">
@@ -35,7 +38,7 @@
         </div>
         <div class="user-box">
             <input type="text" id="category" name="category">
-            <label for="category">Industry:</label>
+            <label for="category">Category:</label>
         </div>
         <div class="user-box">
             <input type="text" id="title" name="title">

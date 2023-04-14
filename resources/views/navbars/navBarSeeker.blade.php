@@ -21,7 +21,11 @@
                 <a href="/seeker.home"><i class="fa fa-home"></i> </a>
                 <span class="tooltip">Home</span>
             </li>
+            <li>
             
+                <a href="/seeker.notifications"><i class="fa fa-bell"></i> </a>
+                        <span class="tooltip">Notifications</span>
+                    </li>           
                 <li>
             
             <a href="/seeker.profile/@isset($seeker){{ $seeker->id }}@endisset"><i class="fa fa-user"></i> </a>
