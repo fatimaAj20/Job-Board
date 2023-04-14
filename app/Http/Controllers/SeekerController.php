@@ -16,9 +16,17 @@ class SeekerController extends Controller
     // once logged in
     public function home()
     {
-        $jobs = [];
         $user = Auth::user();
         $seeker = Seeker::where('userId', $user->id)->first();
+        $seeker_id=
+        $job = DB::select('SELECT * FROM get_job_posts_by_location_and_skills(?)', [$seeker->id]);
+
+        // Convert stdClass objects to associative arrays
+        $job = array_map(function($job) {
+            return (array) $job;
+        }, $job);
+
+
         return view('seeker.home', ['jobs' => $jobs, 'seeker'=>$seeker]);
     }
 
@@ -238,9 +246,6 @@ public function addSkill(Request $request) {
 
 
 
-public function matchedSeeker($job){
-    // return the list of seekers that match specific job
-}
 function SeekerNotifications(Request $request){
     $user=Auth::user();
     $notifications=notifications::where("userId",$user->id)->get();
