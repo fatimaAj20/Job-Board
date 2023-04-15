@@ -4,7 +4,7 @@ This application allows job seekers to search and apply for job postings, and fo
 
 ## Getting Started
 
-To start testing the project, run the file "install.php". Once done, it will redirect you to the login page.
+To start testing the project, run the file "install.php". Once done, it will redirect you to the login page. If not redirected, enter the url : http://localhost:8000 at your browser
 
 In the login page, you can directly login:
 
