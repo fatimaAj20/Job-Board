@@ -22,7 +22,7 @@ mysqli_close($conn);
 exec('composer install ', $output);
 
 //make env file
-exec('cp .env.example .env ', $output);
+exec('copy .env.example .env ', $output);
 
 // set the key
 exec(' php artisan key:generate', $output);
